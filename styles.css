@@ -94,16 +94,18 @@ body {
 
 /* ---------- Knoppen ---------- */
 
-/* Primair: de belangrijkste actie op de pagina. Groot, massief en met het
-   hoogste contrast dat het palet toelaat. */
+/* Primair: de belangrijkste actie op de pagina, in Fruitig.
+   De tekst is Krachtig, niet wit: wit op Fruitig haalt 2,73:1 en zakt daarmee
+   onder de WCAG-ondergrens. Krachtig op Fruitig haalt 6,54:1 en voldoet aan AA.
+   Verander die tekstkleur dus niet zonder opnieuw te rekenen. */
 .btn {
   font: inherit;
   font-size: 1rem;
   font-weight: 600;
   letter-spacing: 0.01em;
-  color: var(--creme);
-  background: var(--ink);
-  border: 1.5px solid var(--ink);
+  color: var(--ink);
+  background: var(--fruitig);
+  border: 1.5px solid var(--fruitig);
   border-radius: var(--radius);
   padding: 1rem 2.25rem;
   margin-top: 2.25rem;
@@ -114,9 +116,9 @@ body {
 }
 
 .btn:hover {
-  background: var(--fruitig);
-  border-color: var(--fruitig);
-  color: var(--ink);
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--creme);
   box-shadow: 0 2px 6px rgba(46, 13, 8, 0.22);
 }
 
