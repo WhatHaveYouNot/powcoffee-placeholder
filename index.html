@@ -20,7 +20,7 @@
 <meta name="twitter:card" content="summary_large_image">
 
 
-<link rel="stylesheet" href="styles.css?v=10">
+<link rel="stylesheet" href="styles.css?v=11">
 
 </head>
 <body>
@@ -59,24 +59,21 @@
 <dialog class="modal" id="form-modal" aria-labelledby="modal-title">
   <div class="modal__head">
     <h2 class="modal__title" id="modal-title">Hou me op de hoogte</h2>
-    <button type="button" class="modal__close" id="close-form" aria-label="Sluiten">&times;</button>
+    <div class="modal__head-right">
+      <!-- In de kop en niet onderaan: de kop blijft staan bij het scrollen,
+           dus de link is altijd bereikbaar en kost geen extra hoogte.
+           Nieuw tabblad, anders raakt een half ingevuld formulier kwijt. -->
+      <a class="modal__privacy" href="/privacy" target="_blank" rel="noopener">Privacyverklaring</a>
+      <button type="button" class="modal__close" id="close-form" aria-label="Sluiten">&times;</button>
+    </div>
   </div>
 
   <!-- HubSpot vult dit in zodra het script geladen is. Dat script wordt pas
        opgehaald bij de eerste klik op de knop, zodat er niets van HubSpot of
        reCAPTCHA laadt bij een gewoon paginabezoek. -->
   <div class="hs-form-frame" data-region="eu1" data-form-id="3313809b-ae9d-48c7-9a12-b1d08e2b3a7b" data-portal-id="149139429"></div>
-
-  <!-- Buiten de iframe, want de inhoud daarvan komt van HubSpot en is hier
-       niet aan te passen. Opent in een nieuw tabblad, anders raakt iemand
-       kwijt wat hij al in het formulier had ingevuld. -->
-  <p class="modal__foot">
-    <a class="btn-cookies" href="/privacy" target="_blank" rel="noopener">
-      Lees onze privacyverklaring
-    </a>
-  </p>
 </dialog>
 
-<script src="script.js?v=10" defer></script>
+<script src="script.js?v=11" defer></script>
 </body>
 </html>

@@ -242,10 +242,13 @@ body {
 
 /* HubSpot rendert het formulier in een eigen iframe, dus de opmaak daarvan
    stel je in bij HubSpot. Hier alleen het venster eromheen. */
+/* Breed genoeg dat het HubSpot-formulier zijn tekst niet meer opbreekt: daar
+   zit de hoogtewinst, en zo staat de verzendknop zonder scrollen in beeld.
+   Boven ongeveer 54rem levert extra breedte niets meer op. */
 .modal {
-  width: min(26rem, calc(100vw - 2rem));
-  max-height: min(90vh, 60rem);
-  padding: 1.5rem;
+  width: min(46rem, calc(100vw - 2rem));
+  max-height: min(94vh, 60rem);
+  padding: 1.25rem 1.5rem 1.5rem;
   border: 1.5px solid var(--ink);
   border-radius: var(--radius);
   background: var(--creme);
@@ -261,15 +264,33 @@ body {
    Esc-toets en is er nauwelijks achtergrond om naast te klikken. */
 .modal__head {
   position: sticky;
-  top: -1.5rem;
+  top: -1.25rem;
   display: flex;
   align-items: baseline;
   justify-content: space-between;
   gap: 1rem;
-  margin: -1.5rem -1.5rem 0.5rem;
-  padding: 1.5rem 1.5rem 0.75rem;
+  margin: -1.25rem -1.5rem 0.25rem;
+  padding: 1.25rem 1.5rem 0.75rem;
   background: var(--creme);
 }
+
+.modal__head-right {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  flex: none;
+}
+
+.modal__privacy {
+  font-size: 0.8125rem;
+  color: var(--ink-70);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(46, 13, 8, 0.25);
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+
+.modal__privacy:hover { color: var(--ink); border-color: var(--ink); }
+.modal__privacy:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
 
 .modal__title {
   margin: 0;
@@ -390,19 +411,6 @@ body {
 }
 
 .cookies__text a { color: var(--ink); }
-
-.modal__foot {
-  margin: 1rem 0 0;
-  text-align: center;
-}
-
-/* De link in het formuliervenster gebruikt de knopstijl, dus hem ook als
-   inline-block tonen zodat padding en rand kloppen. */
-a.btn-cookies {
-  display: inline-block;
-  margin-top: 0;
-  text-decoration: none;
-}
 
 .doc code {
   font-family: ui-monospace, SFMono-Regular, Menlo, monospace;

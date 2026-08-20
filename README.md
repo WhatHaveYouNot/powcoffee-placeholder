@@ -85,10 +85,16 @@ zelf start, en het formulier vraagt zelf om toestemming voor de gegevens.
 ## Privacyverklaring
 
 Staat op `/privacy` (`privacy/index.html`) en is bereikbaar via twee plekken:
-de cookiebanner en een knop onderaan het formuliervenster. Die knop staat
-bewust **buiten** de HubSpot-iframe, want de inhoud daarvan komt van HubSpot
-en is niet vanuit deze code aan te passen. Hij opent in een nieuw tabblad,
-zodat een half ingevuld formulier niet verloren gaat.
+de cookiebanner en de kop van het formuliervenster. Die link staat bewust
+**buiten** de HubSpot-iframe, want de inhoud daarvan komt van HubSpot en is
+niet vanuit deze code aan te passen. Hij opent in een nieuw tabblad, zodat een
+half ingevuld formulier niet verloren gaat.
+
+Het formuliervenster is `46rem` breed. Dat is geen smaakkeuze: het
+HubSpot-formulier breekt zijn tekst minder op naarmate het breder is, en boven
+ongeveer 54rem levert extra breedte niets meer op. Bij 46rem staat de
+verzendknop zonder scrollen in beeld tot en met een viewport van 800px hoog.
+Maak je dit smaller, dan verdwijnt die knop weer onder de vouw.
 
 ## Cache bij GitHub Pages
 
