@@ -61,19 +61,26 @@ c.save('og.png', optimize=True)"
 
 ## Cookiebanner
 
-De HubSpot tracking code staat in de `<head>` (`js-eu1.hs-scripts.com`). Die
-tekent de cookiebanner en definieert `_hsp`. De knop "Cookie Settings" onderaan
-roept de banner opnieuw op via `_hsp.push(['showBanner'])`.
+De banner staat in `index.html` en is meteen zichtbaar bij het eerste bezoek.
+`script.js` regelt de keuze:
 
-Zonder die tracking code doet die knop niets: `_hsp` bestaat dan niet.
+- **Geen keuze gemaakt:** er laadt niets van HubSpot en er staan geen cookies.
+- **Accepteren:** pas dan wordt `js-eu1.hs-scripts.com/149139429.js` ingeladen.
+- **Weigeren:** er laadt niets; de keuze wordt onthouden in `localStorage`
+  onder `pow-cookie-consent`.
 
-Let op: de tracking code laadt nu bij **elk** paginabezoek. Of er daadwerkelijk
-cookies gezet worden voordat iemand toestemming geeft, bepaal je in HubSpot
-onder Settings -> Privacy & Consent. Zet daar het beleid voor powcoffee.nl goed,
-anders staat er een banner terwijl de cookies er toch al zijn.
+De knop "Cookie Settings" onderaan opent de banner opnieuw, zodat een keuze
+altijd te herzien is.
 
-Het aanmeldformulier blijft wel lui geladen: HubSpot Forms en Google reCAPTCHA
-komen pas binnen als iemand op "Hou me op de hoogte" klikt.
+Dit is bewust **niet** de banner van HubSpot zelf. Die bleef leeg omdat er in
+HubSpot geen cookiebeleid voor powcoffee.nl gepubliceerd is, en HubSpot laadt
+zijn tracking code sowieso voordat er toestemming is. Publiceer je later alsnog
+een beleid in HubSpot, haal deze banner dan weg: anders krijgen bezoekers er
+twee.
+
+Het aanmeldformulier staat hier los van. HubSpot Forms en reCAPTCHA laden pas
+als iemand op "Hou me op de hoogte" klikt; dat is een handeling die de bezoeker
+zelf start, en het formulier vraagt zelf om toestemming voor de gegevens.
 
 ## Cache bij GitHub Pages
 

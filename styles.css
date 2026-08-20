@@ -2,15 +2,22 @@
    Volgt de merkbrief:
    - Krachtig #2E0D08 als tekstkleur, crème achtergrond
    - Inter voor tekst (het logo brengt zijn eigen letters mee als vector)
-   - De ronde vorm is voorbehouden aan het logo: alles anders scherpe hoeken.
-     Voeg hier dus geen border-radius toe. */
+   - Knoppen en panelen hebben een lichte afronding (--radius). Het logo blijft
+     de enige echt ronde vorm; houd die afronding dus subtiel.
+     Let op: de merkbrief in Notion schrijft nog scherpe hoeken voor. Die is
+     hier bewust van afgeweken; werk de brief bij zodat ze weer overeenkomen. */
 
 :root {
   --creme: #faf4ea;
   --ink:   #2e0d08; /* Krachtig, gelijk aan de fill in de logo-SVG's */
   --fruitig: #f37868;
 
+  /* Lichte afronding op knoppen en panelen. Het logo blijft de enige
+     echt ronde vorm; dit is bewust net genoeg om de hoeken te breken. */
+  --radius: 4px;
+
   --ink-70: rgba(46, 13, 8, 0.7);
+  --ink-45: rgba(46, 13, 8, 0.45);
 
   --font-body: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
@@ -85,28 +92,113 @@ body {
   *, *::before, *::after { transition-duration: 0.01ms !important; }
 }
 
-/* ---------- Knop ---------- */
+/* ---------- Knoppen ---------- */
 
+/* Primair: de belangrijkste actie op de pagina. Groot, massief en met het
+   hoogste contrast dat het palet toelaat. */
 .btn {
   font: inherit;
+  font-size: 1rem;
   font-weight: 600;
-  font-size: 0.9375rem;
+  letter-spacing: 0.01em;
   color: var(--creme);
   background: var(--ink);
   border: 1.5px solid var(--ink);
-  padding: 0.8rem 1.5rem;
-  margin-top: 2rem;
+  border-radius: var(--radius);
+  padding: 1rem 2.25rem;
+  margin-top: 2.25rem;
   cursor: pointer;
-  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+  box-shadow: 0 1px 2px rgba(46, 13, 8, 0.18);
+  transition: background-color 0.15s ease, border-color 0.15s ease,
+              color 0.15s ease, transform 0.1s ease, box-shadow 0.15s ease;
 }
 
 .btn:hover {
   background: var(--fruitig);
   border-color: var(--fruitig);
   color: var(--ink);
+  box-shadow: 0 2px 6px rgba(46, 13, 8, 0.22);
 }
 
+.btn:active { transform: translateY(1px); box-shadow: none; }
 .btn:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+
+/* Kleiner formaat, voor in de cookiebanner. */
+.btn--sm {
+  font-size: 0.875rem;
+  padding: 0.6rem 1.1rem;
+  margin-top: 0;
+}
+
+/* Zonder vlak: voor de nevengeschikte keuze. Weigeren moet net zo makkelijk
+   zijn als accepteren, dus even groot en even leesbaar, alleen rustiger. */
+.btn--ghost {
+  color: var(--ink);
+  background: transparent;
+  border-color: var(--ink-45);
+  box-shadow: none;
+}
+
+.btn--ghost:hover {
+  background: transparent;
+  border-color: var(--ink);
+  color: var(--ink);
+  box-shadow: none;
+}
+
+/* Cookie-instellingen: een hulpmiddel, geen call to action. Bewust
+   ingetogen, zodat het niet met de primaire knop concurreert. */
+.btn-cookies {
+  font: inherit;
+  font-size: 0.8125rem;
+  color: var(--ink-70);
+  background: transparent;
+  border: 1px solid rgba(46, 13, 8, 0.2);
+  border-radius: var(--radius);
+  padding: 0.4rem 0.8rem;
+  margin-top: 2.5rem;
+  cursor: pointer;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+
+.btn-cookies:hover { color: var(--ink); border-color: var(--ink); }
+.btn-cookies:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+
+/* ---------- Cookiebanner ---------- */
+
+.cookies {
+  position: fixed;
+  left: 1rem;
+  right: 1rem;
+  bottom: 1rem;
+  z-index: 10;
+  max-width: 34rem;
+  margin: 0 auto;
+  padding: 1.25rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem;
+  background: var(--creme);
+  border: 1.5px solid var(--ink);
+  border-radius: var(--radius);
+  box-shadow: 0 4px 20px rgba(46, 13, 8, 0.2);
+}
+
+.cookies[hidden] { display: none; }
+
+.cookies__text {
+  flex: 1 1 16rem;
+  margin: 0;
+  font-size: 0.875rem;
+  color: var(--ink-70);
+}
+
+.cookies__actions {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
 
 /* ---------- Formuliervenster ---------- */
 
@@ -117,6 +209,7 @@ body {
   max-height: min(90vh, 60rem);
   padding: 1.5rem;
   border: 1.5px solid var(--ink);
+  border-radius: var(--radius);
   background: var(--creme);
   color: var(--ink);
   overflow-y: auto;
@@ -163,22 +256,3 @@ body {
 
 .modal__close:hover { color: var(--ink); }
 .modal__close:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
-
-/* ---------- Cookie-instellingen ---------- */
-
-/* Kleur volgt de HubSpot-snippet (Fruitig), maar zonder de border-radius
-   daaruit: de ronde vorm is aan het logo voorbehouden. */
-.btn-cookies {
-  font: inherit;
-  font-size: 0.8125rem;
-  color: var(--creme);
-  background: var(--fruitig);
-  border: 1px solid var(--fruitig);
-  padding: 0.5rem 0.9rem;
-  margin-top: 2.5rem;
-  cursor: pointer;
-  transition: background-color 0.15s ease, border-color 0.15s ease;
-}
-
-.btn-cookies:hover { background: var(--ink); border-color: var(--ink); }
-.btn-cookies:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
