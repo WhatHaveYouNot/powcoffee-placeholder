@@ -94,35 +94,42 @@ body {
 
 /* ---------- Knoppen ---------- */
 
-/* Primair: de belangrijkste actie op de pagina, in Fruitig.
-   De tekst is Krachtig, niet wit: wit op Fruitig haalt 2,73:1 en zakt daarmee
-   onder de WCAG-ondergrens. Krachtig op Fruitig haalt 6,54:1 en voldoet aan AA.
-   Verander die tekstkleur dus niet zonder opnieuw te rekenen. */
+/* Primair: de belangrijkste actie op de pagina.
+   Massief vlak, duidelijke rand en een gelaagde schaduw. Bij hover komt de
+   knop een pixel omhoog, bij indrukken zakt hij terug: dat maakt in een
+   oogopslag duidelijk dat het een knop is en geen label. */
 .btn {
   font: inherit;
-  font-size: 1rem;
+  font-size: 1.0625rem;
   font-weight: 600;
   letter-spacing: 0.01em;
-  color: var(--ink);
-  background: var(--fruitig);
-  border: 1.5px solid var(--fruitig);
+  color: var(--creme);
+  background: var(--ink);
+  border: 1.5px solid var(--ink);
   border-radius: var(--radius);
   padding: 1rem 2.25rem;
   margin-top: 2.25rem;
   cursor: pointer;
-  box-shadow: 0 1px 2px rgba(46, 13, 8, 0.18);
+  box-shadow: 0 1px 1px rgba(46, 13, 8, 0.2),
+              0 3px 10px rgba(46, 13, 8, 0.22);
   transition: background-color 0.15s ease, border-color 0.15s ease,
               color 0.15s ease, transform 0.1s ease, box-shadow 0.15s ease;
 }
 
 .btn:hover {
-  background: var(--ink);
-  border-color: var(--ink);
-  color: var(--creme);
-  box-shadow: 0 2px 6px rgba(46, 13, 8, 0.22);
+  background: var(--fruitig);
+  border-color: var(--fruitig);
+  color: var(--ink);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 2px rgba(46, 13, 8, 0.18),
+              0 6px 16px rgba(46, 13, 8, 0.26);
 }
 
-.btn:active { transform: translateY(1px); box-shadow: none; }
+.btn:active {
+  transform: translateY(1px);
+  box-shadow: 0 1px 1px rgba(46, 13, 8, 0.2);
+}
+
 .btn:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
 
 /* Kleiner formaat, voor in de cookiebanner. */

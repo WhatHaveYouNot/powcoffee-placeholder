@@ -121,10 +121,10 @@ Deze volgen uit de merkbrief in Notion. Handig om te weten als je gaat aanpassen
 - **Font:** Inter voor de tekst, via Google Fonts. Fraunces is hier niet nodig —
   het logo brengt zijn eigen letters mee als vector.
 - **Toon:** altijd "je", nooit "u". Geen grote woorden van kleine dingen.
-- **Knoptekst op Fruitig is Krachtig, niet wit.** Wit op `#F37868` haalt 2,73:1
-  en zakt daarmee onder de WCAG-ondergrens (ook die voor grote tekst). Krachtig
-  op Fruitig haalt 6,54:1 en voldoet aan AA. Reken opnieuw voor je die
-  combinatie wijzigt.
+- **De primaire knop is Krachtig met creme tekst** (16,3:1). Bij hover keert hij
+  om naar Fruitig met Krachtig tekst (6,54:1). Zet daar geen witte tekst op:
+  wit op `#F37868` haalt 2,73:1 en zakt onder de WCAG-ondergrens, ook die voor
+  grote tekst. Reken opnieuw voor je die combinatie wijzigt.
 
 ## Als je later toch e-mails wil verzamelen
 
