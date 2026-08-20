@@ -43,8 +43,15 @@
     }
   }
 
+  // Of de tracking code in deze paginalading daadwerkelijk is ingeladen.
+  // Hier op sturen, niet op de opgeslagen keuze: die wordt bij het laden
+  // ingelezen en zou verouderd zijn als iemand in dezelfde sessie eerst
+  // accepteert en daarna intrekt.
+  var trackingLoaded = false;
+
   function loadTracking() {
     addScript(TRACKING_SCRIPT, 'hs-script-loader');
+    trackingLoaded = true;
   }
 
   function hideBanner() {
@@ -67,9 +74,33 @@
     loadTracking();
   });
 
+  // Cookies die HubSpot plaatst zodra de tracking code draait.
+  var HUBSPOT_COOKIES = ['__hstc', 'hubspotutk', '__hssrc', '__hssc'];
+
+  function clearTrackingCookies() {
+    var host = window.location.hostname;
+    var domains = ['', host, '.' + host];
+    // Het hoofddomein meenemen: HubSpot zet cookies vaak op .powcoffee.nl,
+    // ook als je op www zit.
+    var parts = host.split('.');
+    if (parts.length > 2) domains.push('.' + parts.slice(-2).join('.'));
+
+    HUBSPOT_COOKIES.forEach(function (name) {
+      domains.forEach(function (d) {
+        var c = name + '=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/';
+        document.cookie = d ? c + '; domain=' + d : c;
+      });
+    });
+  }
+
   document.getElementById('cookie-decline').addEventListener('click', function () {
     remember('declined');
     hideBanner();
+    clearTrackingCookies();
+    // Draait de tracking code al in deze pagina, dan krijg je hem er niet meer
+    // uit: alleen een herlading stopt hem. Zonder dit zou intrekken pas bij de
+    // volgende paginalading effect hebben.
+    if (trackingLoaded) window.location.reload();
   });
 
   // De knop onderaan opent de banner opnieuw, zodat een keuze altijd te

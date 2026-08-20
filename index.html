@@ -23,7 +23,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
-<link rel="stylesheet" href="styles.css?v=6">
+<link rel="stylesheet" href="styles.css?v=8">
 
 </head>
 <body>
@@ -51,6 +51,7 @@
   <p class="cookies__text">
     We gebruiken cookies om te zien hoe de site gebruikt wordt. Alleen als jij
     dat goed vindt. Zonder werkt de site gewoon.
+    <a href="/privacy">Lees de privacyverklaring</a>.
   </p>
   <div class="cookies__actions">
     <button type="button" class="btn btn--sm" id="cookie-accept">Accepteren</button>
@@ -68,8 +69,17 @@
        opgehaald bij de eerste klik op de knop, zodat er niets van HubSpot of
        reCAPTCHA laadt bij een gewoon paginabezoek. -->
   <div class="hs-form-frame" data-region="eu1" data-form-id="3313809b-ae9d-48c7-9a12-b1d08e2b3a7b" data-portal-id="149139429"></div>
+
+  <!-- Buiten de iframe, want de inhoud daarvan komt van HubSpot en is hier
+       niet aan te passen. Opent in een nieuw tabblad, anders raakt iemand
+       kwijt wat hij al in het formulier had ingevuld. -->
+  <p class="modal__foot">
+    <a class="btn-cookies" href="/privacy" target="_blank" rel="noopener">
+      Lees onze privacyverklaring
+    </a>
+  </p>
 </dialog>
 
-<script src="script.js?v=4" defer></script>
+<script src="script.js?v=8" defer></script>
 </body>
 </html>

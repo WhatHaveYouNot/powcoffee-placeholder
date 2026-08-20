@@ -82,6 +82,14 @@ Het aanmeldformulier staat hier los van. HubSpot Forms en reCAPTCHA laden pas
 als iemand op "Hou me op de hoogte" klikt; dat is een handeling die de bezoeker
 zelf start, en het formulier vraagt zelf om toestemming voor de gegevens.
 
+## Privacyverklaring
+
+Staat op `/privacy` (`privacy/index.html`) en is bereikbaar via twee plekken:
+de cookiebanner en een knop onderaan het formuliervenster. Die knop staat
+bewust **buiten** de HubSpot-iframe, want de inhoud daarvan komt van HubSpot
+en is niet vanuit deze code aan te passen. Hij opent in een nieuw tabblad,
+zodat een half ingevuld formulier niet verloren gaat.
+
 ## Cache bij GitHub Pages
 
 GitHub Pages stuurt `cache-control: max-age=600`. Na een deploy kan een

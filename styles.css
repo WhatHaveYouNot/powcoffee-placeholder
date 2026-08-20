@@ -265,3 +265,112 @@ body {
 
 .modal__close:hover { color: var(--ink); }
 .modal__close:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+
+/* ---------- Documentpagina's (privacyverklaring) ---------- */
+
+.doc__head {
+  max-width: 44rem;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem 0;
+}
+
+.doc__logo {
+  display: inline-block;
+  line-height: 0;
+  border-radius: var(--radius);
+}
+
+.doc__logo img {
+  display: block;
+  width: 7.5rem;
+  height: auto;
+}
+
+.doc__logo:focus-visible { outline: 2px solid var(--ink); outline-offset: 4px; }
+
+.doc {
+  max-width: 44rem;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem 5rem;
+}
+
+.doc h1 {
+  margin: 0;
+  font-size: clamp(1.75rem, 1.3rem + 1.8vw, 2.5rem);
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+}
+
+.doc__meta {
+  margin: 0.75rem 0 0;
+  font-size: 0.875rem;
+  color: var(--ink-45);
+}
+
+.doc__lead {
+  margin: 1.75rem 0 0;
+  font-size: 1.0625rem;
+  color: var(--ink-70);
+}
+
+.doc h2 {
+  margin: 2.75rem 0 0;
+  padding-top: 1.75rem;
+  border-top: 1px solid rgba(46, 13, 8, 0.12);
+  font-size: 1.1875rem;
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.doc p {
+  margin: 1rem 0 0;
+  color: var(--ink-70);
+}
+
+.doc ul {
+  margin: 1rem 0 0;
+  padding-left: 1.25rem;
+  color: var(--ink-70);
+}
+
+.doc li { margin-top: 0.4rem; }
+
+.doc li::marker { color: var(--ink-45); }
+
+.doc strong { color: var(--ink); font-weight: 600; }
+
+.doc a {
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(46, 13, 8, 0.3);
+  transition: border-color 0.15s ease;
+}
+
+.doc a:hover { border-color: var(--ink); }
+.doc a:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+
+.doc__contact { line-height: 1.8; }
+
+.doc__back {
+  margin-top: 3.5rem;
+  padding-top: 1.75rem;
+  border-top: 1px solid rgba(46, 13, 8, 0.12);
+  font-size: 0.9375rem;
+}
+
+.cookies__text a { color: var(--ink); }
+
+.modal__foot {
+  margin: 1rem 0 0;
+  text-align: center;
+}
+
+/* De link in het formuliervenster gebruikt de knopstijl, dus hem ook als
+   inline-block tonen zodat padding en rand kloppen. */
+a.btn-cookies {
+  display: inline-block;
+  margin-top: 0;
+  text-decoration: none;
+}
