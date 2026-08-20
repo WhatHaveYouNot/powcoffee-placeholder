@@ -126,8 +126,11 @@ Deze volgen uit de merkbrief in Notion. Handig om te weten als je gaat aanpassen
 - **Kleuren:** Krachtig `#2E0D08` als tekstkleur op een crèmetint (`#FAF4EA`).
   `#2E0D08` is ook de `fill` in de logo-SVG's, dus logo en tekst zijn één geheel.
   Fruitig en Rond komen op deze pagina niet voor.
-- **Font:** Inter voor de tekst, via Google Fonts. Fraunces is hier niet nodig —
-  het logo brengt zijn eigen letters mee als vector.
+- **Font:** Inter, **zelf gehost** vanuit `fonts/`. Zet dit niet terug naar een
+  `<link>` naar fonts.googleapis.com: Google Fonts stuurt het IP-adres van elke
+  bezoeker naar Google in de VS, bij elk bezoek en voor enige toestemming. Dat
+  botst met de privacyverklaring, die zegt dat er niets buiten de EER gaat.
+  Fraunces is niet nodig — het logo brengt zijn eigen letters mee als vector.
 - **Toon:** altijd "je", nooit "u". Geen grote woorden van kleine dingen.
 - **De primaire knop is Krachtig met creme tekst** (16,3:1). Bij hover keert hij
   om naar Fruitig met Krachtig tekst (6,54:1). Zet daar geen witte tekst op:
