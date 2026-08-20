@@ -46,4 +46,14 @@
   dialog.addEventListener('close', function () {
     openBtn.focus();
   });
+
+  // Cookiebanner opnieuw openen. _hsp is de wachtrij van de HubSpot tracking
+  // code; die staat in de <head>. Zonder die code gebeurt hier niets.
+  var cookieBtn = document.getElementById('hs_show_banner_button');
+  if (cookieBtn) {
+    cookieBtn.addEventListener('click', function () {
+      var hsp = window._hsp = window._hsp || [];
+      hsp.push(['showBanner']);
+    });
+  }
 })();

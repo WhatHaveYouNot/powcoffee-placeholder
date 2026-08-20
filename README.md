@@ -59,6 +59,30 @@ c.paste(logo, ((1200-logo.size[0])//2, (630-logo.size[1])//2), logo)
 c.save('og.png', optimize=True)"
 ```
 
+## Cookiebanner
+
+De HubSpot tracking code staat in de `<head>` (`js-eu1.hs-scripts.com`). Die
+tekent de cookiebanner en definieert `_hsp`. De knop "Cookie Settings" onderaan
+roept de banner opnieuw op via `_hsp.push(['showBanner'])`.
+
+Zonder die tracking code doet die knop niets: `_hsp` bestaat dan niet.
+
+Let op: de tracking code laadt nu bij **elk** paginabezoek. Of er daadwerkelijk
+cookies gezet worden voordat iemand toestemming geeft, bepaal je in HubSpot
+onder Settings -> Privacy & Consent. Zet daar het beleid voor powcoffee.nl goed,
+anders staat er een banner terwijl de cookies er toch al zijn.
+
+Het aanmeldformulier blijft wel lui geladen: HubSpot Forms en Google reCAPTCHA
+komen pas binnen als iemand op "Hou me op de hoogte" klikt.
+
+## Cache bij GitHub Pages
+
+GitHub Pages stuurt `cache-control: max-age=600`. Na een deploy kan een
+bezoeker dus tot tien minuten de oude CSS of JS houden. Daarom hangt er een
+versienummer aan de links: `styles.css?v=3` en `script.js?v=3`. **Hoog dat
+nummer op** zodra je een van die twee bestanden wijzigt, anders zien
+terugkerende bezoekers de oude versie.
+
 ## Hosten op GitHub Pages
 
 1. Maak een repo en push deze map.
