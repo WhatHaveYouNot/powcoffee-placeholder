@@ -8,6 +8,7 @@
 :root {
   --creme: #faf4ea;
   --ink:   #2e0d08; /* Krachtig, gelijk aan de fill in de logo-SVG's */
+  --fruitig: #f37868;
 
   --ink-70: rgba(46, 13, 8, 0.7);
 
@@ -84,13 +85,81 @@ body {
   *, *::before, *::after { transition-duration: 0.01ms !important; }
 }
 
-/* ---------- Aanmeldformulier (HubSpot embed) ---------- */
+/* ---------- Knop ---------- */
 
-/* HubSpot brengt zijn eigen opmaak mee. Hier alleen de breedte en de ruimte
-   eromheen, zodat het formulier binnen de gecentreerde layout blijft. */
-.signup {
-  width: 100%;
-  max-width: 24rem;
-  margin: 2rem auto 0;
-  text-align: left;
+.btn {
+  font: inherit;
+  font-weight: 600;
+  font-size: 0.9375rem;
+  color: var(--creme);
+  background: var(--ink);
+  border: 1.5px solid var(--ink);
+  padding: 0.8rem 1.5rem;
+  margin-top: 2rem;
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
 }
+
+.btn:hover {
+  background: var(--fruitig);
+  border-color: var(--fruitig);
+  color: var(--ink);
+}
+
+.btn:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+
+/* ---------- Formuliervenster ---------- */
+
+/* HubSpot rendert het formulier in een eigen iframe, dus de opmaak daarvan
+   stel je in bij HubSpot. Hier alleen het venster eromheen. */
+.modal {
+  width: min(26rem, calc(100vw - 2rem));
+  max-height: min(90vh, 60rem);
+  padding: 1.5rem;
+  border: 1.5px solid var(--ink);
+  background: var(--creme);
+  color: var(--ink);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.modal::backdrop { background: rgba(46, 13, 8, 0.55); }
+
+/* Blijft staan tijdens het scrollen, zodat de sluitknop altijd bereikbaar is.
+   Op mobiel is dat de enige manier om het venster te sluiten: daar is geen
+   Esc-toets en is er nauwelijks achtergrond om naast te klikken. */
+.modal__head {
+  position: sticky;
+  top: -1.5rem;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  margin: -1.5rem -1.5rem 0.5rem;
+  padding: 1.5rem 1.5rem 0.75rem;
+  background: var(--creme);
+}
+
+.modal__title {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.modal__close {
+  font: inherit;
+  font-size: 1.5rem;
+  line-height: 1;
+  color: var(--ink-70);
+  background: none;
+  border: 0;
+  padding: 0.25rem 0.5rem;
+  margin: -0.25rem -0.5rem 0 0;
+  cursor: pointer;
+  transition: color 0.15s ease;
+}
+
+.modal__close:hover { color: var(--ink); }
+.modal__close:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }

@@ -11,13 +11,19 @@ pow-mark-krachtig.svg      de losse ring, gebruikt als favicon
 og.png                     deelplaatje voor WhatsApp/LinkedIn (1200x630)
 ```
 
-De pagina heeft vier elementen: het logo, "binnenkort", het HubSpot-formulier
-en het e-mailadres.
+De pagina heeft vier elementen: het logo, "binnenkort", een knop die het
+aanmeldformulier opent, en het e-mailadres.
 
 ## Het aanmeldformulier
 
 Embed van HubSpot-formulier `3313809b-ae9d-48c7-9a12-b1d08e2b3a7b` in portal
 `149139429`, regio `eu1`.
+
+Het formulier zit achter een knop, in een native `<dialog>`. Het HubSpot-script
+wordt pas opgehaald bij de eerste klik (zie `script.js`). Een gewoon
+paginabezoek laadt dus niets van HubSpot en niets van Google reCAPTCHA.
+Verplaats die embed niet terug naar de pagina zelf zonder dat te heroverwegen:
+dan laden die trackers weer bij iedere bezoeker.
 
 HubSpot rendert het formulier in een **iframe op hun eigen domein**. Dat betekent
 dat je het niet vanuit `styles.css` kunt opmaken: die CSS komt de iframe niet in.
