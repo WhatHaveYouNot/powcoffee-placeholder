@@ -11,7 +11,25 @@ pow-mark-krachtig.svg      de losse ring, gebruikt als favicon
 og.png                     deelplaatje voor WhatsApp/LinkedIn (1200x630)
 ```
 
-De pagina heeft drie elementen: het logo, "binnenkort" en het e-mailadres.
+De pagina heeft vier elementen: het logo, "binnenkort", het HubSpot-formulier
+en het e-mailadres.
+
+## Het aanmeldformulier
+
+Embed van HubSpot-formulier `3313809b-ae9d-48c7-9a12-b1d08e2b3a7b` in portal
+`149139429`, regio `eu1`.
+
+HubSpot rendert het formulier in een **iframe op hun eigen domein**. Dat betekent
+dat je het niet vanuit `styles.css` kunt opmaken: die CSS komt de iframe niet in.
+Alle opmaak (lettertype, kleuren, hoeken, knop) stel je in bij HubSpot zelf, onder
+Marketing -> Forms -> het formulier -> Style.
+
+Twee dingen om daar recht te zetten, want ze botsen met de merkbrief:
+
+- De invoervelden en de knop hebben **ronde hoeken**. De merkregel is dat de ronde
+  vorm aan het logo voorbehouden is; zet de radius op 0.
+- De knop is HubSpot-oranje, niet Fruitig `#F37868`. Zet ook de tekstkleur op
+  Krachtig `#2E0D08` en het lettertype op Inter.
 
 `pow-mark-krachtig.png` wordt niet door de site gebruikt; die kun je laten staan
 of weggooien.
