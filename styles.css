@@ -83,3 +83,14 @@ body {
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { transition-duration: 0.01ms !important; }
 }
+
+/* ---------- Aanmeldformulier (HubSpot embed) ---------- */
+
+/* HubSpot brengt zijn eigen opmaak mee. Hier alleen de breedte en de ruimte
+   eromheen, zodat het formulier binnen de gecentreerde layout blijft. */
+.signup {
+  width: 100%;
+  max-width: 24rem;
+  margin: 2rem auto 0;
+  text-align: left;
+}
