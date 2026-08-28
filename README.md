@@ -135,6 +135,25 @@ ongeveer 54rem levert extra breedte niets meer op. Bij 46rem staat de
 verzendknop zonder scrollen in beeld tot en met een viewport van 800px hoog.
 Maak je dit smaller, dan verdwijnt die knop weer onder de vouw.
 
+## Smalle schermen
+
+De staande zak maakt de pagina hoog. Op een telefoon liep de inhoud daardoor
+achter de cookiebanner, die onderaan vaststaat. Twee dingen lossen dat op, en
+ze horen bij elkaar:
+
+- Een compactere zak onder 30rem breedte.
+- Ruimte onder de inhoud (`padding-bottom` op `.page`), zodat het verticaal
+  centreren bóven de banner gebeurt. Alleen de zak verkleinen helpt niet
+  genoeg: door het centreren schuift de onderkant maar de helft van de
+  besparing omhoog.
+
+`script.js` zet `.banner-weg` op de body zodra de banner verdwijnt; dan vervalt
+die extra ruimte weer, anders zou de inhoud daarna te hoog hangen.
+
+Let op bij het aanpassen van knoppen in die media query: gebruik
+`.btn:not(.btn--sm)`. Zonder die uitzondering overschrijf je de padding van de
+knoppen in de cookiebanner, waardoor de banner juist hoger wordt.
+
 ## Cache bij GitHub Pages
 
 GitHub Pages stuurt `cache-control: max-age=600`. Na een deploy kan een

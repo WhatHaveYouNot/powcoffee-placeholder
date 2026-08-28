@@ -545,3 +545,28 @@ body {
   background: rgba(0, 0, 0, 0.06);
   border-radius: var(--radius);
 }
+
+/* ---------- Smalle schermen ----------
+   De staande zak maakt de pagina hoog. Op een telefoon liep de inhoud daardoor
+   achter de cookiebanner, die onderaan vaststaat.
+
+   Twee dingen lossen dat op: een compactere zak, en ruimte onderaan zodat het
+   verticaal centreren boven de banner gebeurt. Die ruimte vervalt zodra de
+   banner weg is (script.js zet dan .banner-weg op de body), anders zou de
+   inhoud daarna te hoog hangen. */
+
+@media (max-width: 30rem) {
+  .page { padding-bottom: 11rem; }
+
+  body.banner-weg .page { padding-bottom: 2.5rem; }
+
+  .pouch { width: clamp(10.5rem, 52vw, 13rem); }
+
+  .tagline { margin-top: 1.5rem; }
+  /* Niet .btn--sm meenemen: die staat eerder in het bestand, dus deze regel
+     zou anders de padding van de knoppen in de cookiebanner overschrijven en
+     de banner juist hoger maken. */
+  .btn:not(.btn--sm) { margin-top: 1.5rem; padding: 0.85rem 1.75rem; }
+  .contact { margin-top: 1.75rem; }
+  .btn-cookies { margin-top: 1.75rem; }
+}

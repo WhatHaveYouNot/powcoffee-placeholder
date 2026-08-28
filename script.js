@@ -54,12 +54,21 @@
     trackingLoaded = true;
   }
 
+  // Op smalle schermen houdt de pagina ruimte vrij onder de inhoud zolang de
+  // banner in beeld staat. Zonder die markering zou de inhoud daar achter
+  // verdwijnen; met de markering valt de ruimte weg zodra de banner weg is.
+  function markeerBanner() {
+    document.body.classList.toggle('banner-weg', banner.hidden);
+  }
+
   function hideBanner() {
     banner.hidden = true;
+    markeerBanner();
   }
 
   function showBanner() {
     banner.hidden = false;
+    markeerBanner();
   }
 
   if (stored === 'accepted') {
@@ -67,6 +76,7 @@
   } else if (stored !== 'declined') {
     showBanner();
   }
+  markeerBanner();
 
   document.getElementById('cookie-accept').addEventListener('click', function () {
     remember('accepted');
