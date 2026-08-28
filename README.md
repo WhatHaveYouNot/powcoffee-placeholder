@@ -116,7 +116,7 @@ een beleid in HubSpot, haal deze banner dan weg: anders krijgen bezoekers er
 twee.
 
 Het aanmeldformulier staat hier los van. HubSpot Forms laadt pas als iemand op
-"Houd mij op de hoogte" klikt; dat is een handeling die de bezoeker zelf start, en
+"Houd me op de hoogte" klikt; dat is een handeling die de bezoeker zelf start, en
 het formulier vraagt zelf om toestemming voor de gegevens. reCAPTCHA is in
 HubSpot uitgezet: dat stuurde gegevens naar Google in de VS, wat botste met de
 privacyverklaring. Zet het niet terug aan zonder die verklaring aan te passen.
