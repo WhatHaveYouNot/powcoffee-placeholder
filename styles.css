@@ -87,21 +87,29 @@ body {
 
 /* ---------- Logo ---------- */
 
-/* ---------- RVS-paneel met smaakfamiliebalk ----------
-   Volgt de materiaalrichting uit de merkbrief: een neutrale zilveren drager met
-   een horizontale kleurbalk in de smaakfamiliekleur als enige kleuraccent,
-   precies zoals de koffiezak is opgebouwd.
+/* ---------- Koffiezak in RVS ----------
+   Volgt de materiaalrichting uit de merkbrief: een neutrale zilveren basiszak
+   met een horizontale kleurbalk in de smaakfamiliekleur als enige kleuraccent.
 
-   Het geborstelde effect komt uit gestapelde gradients, niet uit een
-   afbeelding: scherp op elk scherm en geen extra verzoek. Bewust matig van
-   contrast, want "geen poespas, wel smaak" verdraagt geen chroomglans. */
+   De zak is nagebouwd met gestapelde gradients, niet met een afbeelding: scherp
+   op elk scherm en geen extra verzoek. Drie dingen doen het werk qua herkenning
+   - de gekrimpte sealrand bovenaan, de donkere zijvouwen, en het
+   ontgassingsventiel. Dat laatste is het detail dat een zak echt als koffiezak
+   laat lezen.
 
-.plate {
+   Bewust laag in contrast: "geen poespas, wel smaak" verdraagt geen chroomglans. */
+
+.pouch {
   position: relative;
-  overflow: hidden;               /* houdt de balk binnen de afgeronde hoeken */
-  border-radius: var(--radius);
-  padding: clamp(2rem, 5vw, 3rem) clamp(2rem, 6vw, 4rem) 0;
+  overflow: hidden;
+  width: clamp(14rem, 32vw, 18rem);
+  aspect-ratio: 1 / 1.45;          /* verhouding van een staande 250g-zak */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 5px 5px 3px 3px;
   background:
+    /* fijne borstelnerf */
     repeating-linear-gradient(
       90deg,
       rgba(255, 255, 255, 0.22) 0 1px,
@@ -109,42 +117,102 @@ body {
       rgba(255, 255, 255, 0.11) 2px 3px,
       rgba(0, 0, 0, 0.009) 3px 4px
     ),
-    linear-gradient(
-      104deg,
+    /* zijvouwen: donker aan de rand, met een lichtvangertje net daarnaast */
+    linear-gradient(90deg,
+      rgba(0, 0, 0, 0.13) 0%,
+      rgba(0, 0, 0, 0.04) 5%,
+      rgba(255, 255, 255, 0.30) 11%,
+      rgba(255, 255, 255, 0) 19%),
+    linear-gradient(270deg,
+      rgba(0, 0, 0, 0.13) 0%,
+      rgba(0, 0, 0, 0.04) 5%,
+      rgba(255, 255, 255, 0.30) 11%,
+      rgba(255, 255, 255, 0) 19%),
+    /* bodemvouw */
+    linear-gradient(0deg,
+      rgba(0, 0, 0, 0.10) 0%,
+      rgba(0, 0, 0, 0) 7%),
+    /* algemene lichtval over het folie */
+    linear-gradient(104deg,
       var(--staal-mid) 0%,
       var(--staal-licht) 22%,
       var(--staal-mid) 45%,
       var(--staal-licht) 68%,
       var(--staal-mid) 88%,
-      var(--staal-licht) 100%
-    );
+      var(--staal-licht) 100%);
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.75),
-    inset 0 -1px 0 rgba(0, 0, 0, 0.10),
+    inset 0 1px 0 rgba(255, 255, 255, 0.7),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.12),
     0 1px 2px rgba(0, 0, 0, 0.10),
-    0 8px 28px rgba(0, 0, 0, 0.13);
+    0 10px 30px rgba(0, 0, 0, 0.15);
 }
 
-.plate__logo { margin: 0; line-height: 0; }
+/* De gekrimpte sealrand bovenaan, met de fijne verticale tandjes van de seal. */
+.pouch__seal {
+  flex: none;
+  width: 100%;
+  height: 7%;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.14);
+  background:
+    repeating-linear-gradient(
+      90deg,
+      rgba(0, 0, 0, 0.09) 0 2px,
+      rgba(255, 255, 255, 0.34) 2px 4px
+    ),
+    linear-gradient(180deg,
+      rgba(255, 255, 255, 0.45) 0%,
+      rgba(0, 0, 0, 0.07) 100%);
+}
 
-.plate__logo img {
+.pouch__logo {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 0 12%;
+  line-height: 0;
+}
+
+.pouch__logo img {
   display: block;
-  width: clamp(11rem, 26vw, 15rem);
+  width: 100%;
   height: auto;
 }
 
-/* De kleurbalk loopt door tot de randen van het paneel, zoals op de zak. */
-.plate__bar {
+/* De kleurbalk loopt van vouw tot vouw, zoals op de zak zelf. */
+.pouch__bar {
+  flex: none;
   display: flex;
+  width: 100%;
   height: 10px;
-  margin: clamp(2rem, 5vw, 3rem) calc(-1 * clamp(2rem, 6vw, 4rem)) 0;
+  margin-bottom: 7%;
 }
 
-.plate__seg { flex: 1; }
+.pouch__seg { flex: 1; }
 
-.plate__seg--krachtig { background: var(--krachtig); }
-.plate__seg--fruitig  { background: var(--fruitig); }
-.plate__seg--rond     { background: var(--rond); }
+.pouch__seg--krachtig { background: var(--krachtig); }
+.pouch__seg--fruitig  { background: var(--fruitig); }
+.pouch__seg--rond     { background: var(--rond); }
+
+/* Ontgassingsventiel: het detail dat de zak als koffiezak laat herkennen. */
+.pouch__valve {
+  position: absolute;
+  right: 15%;
+  top: 17%;
+  width: 1.35rem;
+  height: 1.35rem;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 50% 50%,
+      rgba(0, 0, 0, 0.30) 0 22%,
+      rgba(0, 0, 0, 0.10) 23% 40%,
+      rgba(255, 255, 255, 0.30) 41% 62%,
+      rgba(0, 0, 0, 0.13) 63% 100%);
+  box-shadow:
+    inset 0 1px 1px rgba(255, 255, 255, 0.5),
+    0 1px 1px rgba(0, 0, 0, 0.12);
+}
 
 /* ---------- Tekst ---------- */
 

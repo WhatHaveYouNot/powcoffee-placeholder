@@ -59,11 +59,14 @@ Wil je dat zeker afdekken, dan is de repo privé maken de veiligste route
 
 - Tekst en logo: **zwart** `#000000` op crème `#F7F3EC` (achtergrondkleur uit de
   merkbrief).
-- Het logo staat op een **geborsteld stalen paneel** met de smaakfamiliebalk
-  eronder. Dat volgt de RVS-materiaalrichting uit de merkbrief: een neutrale
-  zilveren drager met een horizontale kleurbalk als enige kleuraccent, dezelfde
-  opbouw als de koffiezak. Het staaleffect komt uit gestapelde CSS-gradients,
-  niet uit een afbeelding, dus het blijft scherp op elk scherm.
+- Het logo staat op een **nagebouwde zilveren koffiezak** (`.pouch`). Dat volgt
+  de RVS-materiaalrichting uit de merkbrief: een neutrale zilveren basiszak met
+  een horizontale kleurbalk als enige kleuraccent. Drie details doen het werk
+  qua herkenning — de gekrimpte sealrand bovenaan, de donkere zijvouwen en het
+  ontgassingsventiel rechtsboven. Dat ventiel is wat de vorm echt als koffiezak
+  laat lezen; haal je dat weg, dan wordt het weer een generiek paneel.
+  Alles komt uit gestapelde CSS-gradients, niet uit een afbeelding, dus het
+  blijft scherp op elk scherm. Verhouding 1:1.45, die van een staande 250g-zak.
 - Houd dat effect subtiel: "geen poespas, wel smaak" verdraagt geen chroomglans.
 - De drie smaakfamilies komen alleen terug als accent in de balk onder het logo:
   Krachtig `#6D5149`, Fruitig `#9F5456`, Rond `#B39963`. Fruitig is ook de
