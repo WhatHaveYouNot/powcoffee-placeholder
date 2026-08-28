@@ -3,10 +3,9 @@
    - Zwart beeldmerk en zwarte tekst op crème achtergrond
    - De drie smaakfamiliekleuren komen alleen terug als accent (zie .flavours)
    - Alpino voor tekst, zelf gehost (zie het blok hieronder)
-   - Knoppen en panelen hebben een lichte afronding (--radius). Het logo blijft
-     de enige echt ronde vorm; houd die afronding dus subtiel.
-     Let op: de merkbrief in Notion schrijft nog scherpe hoeken voor. Die is
-     hier bewust van afgeweken; werk de brief bij zodat ze weer overeenkomen. */
+   - Ronde hoeken zijn toegestaan in alle toepassingen (--radius). De merkbrief
+     heeft de eerdere regel "scherpe hoeken overal behalve het logo" na de
+     Milaan-trip losgelaten. */
 
 /* ---------- Lettertype ----------
    Alpino (Indian Type Foundry, ITF Free Font License), zelf gehost vanaf dit
@@ -28,7 +27,7 @@
 }
 
 :root {
-  --creme: #faf4ea;
+  --creme: #f7f3ec;
   --ink:   #000000; /* gelijk aan de fill in het zwarte logo */
 
   /* De drie smaakfamilies, uit de logo-set. Alleen als accent gebruikt:
@@ -37,9 +36,13 @@
   --fruitig:  #9f5456;
   --rond:     #b39963;
 
-  /* Lichte afronding op knoppen en panelen. Het logo blijft de enige
-     echt ronde vorm; dit is bewust net genoeg om de hoeken te breken. */
   --radius: 4px;
+
+  /* RVS-tinten voor het paneel, afgeleid van de materiaalrichting in de
+     merkbrief: geborsteld staal als neutrale drager. */
+  --staal-licht: #edebe7;
+  --staal-mid:   #d7d5d0;
+  --staal-diep:  #c6c4bf;
 
   /* 0.70 haalt 8,20:1 op creme, 0.55 haalt 4,65:1. Beide ruim genoeg voor
      lopende tekst; ga niet lager zonder opnieuw te rekenen. */
@@ -84,38 +87,64 @@ body {
 
 /* ---------- Logo ---------- */
 
-.logo {
-  margin: 0;
-  line-height: 0;
+/* ---------- RVS-paneel met smaakfamiliebalk ----------
+   Volgt de materiaalrichting uit de merkbrief: een neutrale zilveren drager met
+   een horizontale kleurbalk in de smaakfamiliekleur als enige kleuraccent,
+   precies zoals de koffiezak is opgebouwd.
+
+   Het geborstelde effect komt uit gestapelde gradients, niet uit een
+   afbeelding: scherp op elk scherm en geen extra verzoek. Bewust matig van
+   contrast, want "geen poespas, wel smaak" verdraagt geen chroomglans. */
+
+.plate {
+  position: relative;
+  overflow: hidden;               /* houdt de balk binnen de afgeronde hoeken */
+  border-radius: var(--radius);
+  padding: clamp(2rem, 5vw, 3rem) clamp(2rem, 6vw, 4rem) 0;
+  background:
+    repeating-linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.22) 0 1px,
+      rgba(0, 0, 0, 0.016) 1px 2px,
+      rgba(255, 255, 255, 0.11) 2px 3px,
+      rgba(0, 0, 0, 0.009) 3px 4px
+    ),
+    linear-gradient(
+      104deg,
+      var(--staal-mid) 0%,
+      var(--staal-licht) 22%,
+      var(--staal-mid) 45%,
+      var(--staal-licht) 68%,
+      var(--staal-mid) 88%,
+      var(--staal-licht) 100%
+    );
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.75),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.10),
+    0 1px 2px rgba(0, 0, 0, 0.10),
+    0 8px 28px rgba(0, 0, 0, 0.13);
 }
 
-/* De lockup is gestapeld (POW boven, coffee eronder), verhouding 805:435.
-   Breedte bepaalt de maat, hoogte volgt automatisch. */
-.logo img {
+.plate__logo { margin: 0; line-height: 0; }
+
+.plate__logo img {
   display: block;
   width: clamp(11rem, 26vw, 15rem);
   height: auto;
 }
 
-/* ---------- Hint naar de drie smaakfamilies ----------
-   Een balk in drieen, in de kleuren van Krachtig, Fruitig en Rond. Bewust klein
-   en zonder uitleg: het is een knipoog, geen legenda. Scherpe hoeken, want de
-   ronde vorm blijft aan het logo voorbehouden.
-   De betekenis staat ook als verborgen tekst in de HTML, zodat die niet
-   uitsluitend van kleur afhangt. */
-
-.flavours {
+/* De kleurbalk loopt door tot de randen van het paneel, zoals op de zak. */
+.plate__bar {
   display: flex;
-  margin: 1.75rem 0 0;
-  width: 7.5rem;
-  height: 5px;
+  height: 10px;
+  margin: clamp(2rem, 5vw, 3rem) calc(-1 * clamp(2rem, 6vw, 4rem)) 0;
 }
 
-.flavours__seg { flex: 1; }
+.plate__seg { flex: 1; }
 
-.flavours__seg--krachtig { background: var(--krachtig); }
-.flavours__seg--fruitig  { background: var(--fruitig); }
-.flavours__seg--rond     { background: var(--rond); }
+.plate__seg--krachtig { background: var(--krachtig); }
+.plate__seg--fruitig  { background: var(--fruitig); }
+.plate__seg--rond     { background: var(--rond); }
 
 /* ---------- Tekst ---------- */
 

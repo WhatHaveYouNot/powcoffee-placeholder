@@ -22,7 +22,7 @@ Embed van HubSpot-formulier `3313809b-ae9d-48c7-9a12-b1d08e2b3a7b` in portal
 
 Het formulier zit achter een knop, in een native `<dialog>`. Het HubSpot-script
 wordt pas opgehaald bij de eerste klik (zie `script.js`). Een gewoon
-paginabezoek laadt dus niets van HubSpot en niets van Google reCAPTCHA.
+paginabezoek laadt dus niets van HubSpot.
 Verplaats die embed niet terug naar de pagina zelf zonder dat te heroverwegen:
 dan laden die trackers weer bij iedere bezoeker.
 
@@ -35,8 +35,8 @@ Twee dingen om daar recht te zetten, want ze botsen met de merkbrief:
 
 - De invoervelden en de knop hebben **ronde hoeken**. De merkregel is dat de ronde
   vorm aan het logo voorbehouden is; zet de radius op 0.
-- De knop is HubSpot-oranje, niet Fruitig `#F37868`. Zet ook de tekstkleur op
-  Krachtig `#2E0D08` en het lettertype op Inter.
+- De knop is HubSpot-oranje. Zet die op Fruitig `#9F5456` met crème tekst, de
+  tekstkleur op zwart en het lettertype op Alpino.
 
 ## Lettertype: Alpino
 
@@ -55,9 +55,16 @@ downloaden van GitHub. Voor de website zelf is zelf-hosten expliciet toegestaan
 Wil je dat zeker afdekken, dan is de repo privé maken de veiligste route
 (vereist GitHub Pro voor Pages met een eigen domein).
 
-## Kleuren
+## Kleuren en materiaal
 
-- Tekst en logo: **zwart** `#000000` op crème `#FAF4EA`.
+- Tekst en logo: **zwart** `#000000` op crème `#F7F3EC` (achtergrondkleur uit de
+  merkbrief).
+- Het logo staat op een **geborsteld stalen paneel** met de smaakfamiliebalk
+  eronder. Dat volgt de RVS-materiaalrichting uit de merkbrief: een neutrale
+  zilveren drager met een horizontale kleurbalk als enige kleuraccent, dezelfde
+  opbouw als de koffiezak. Het staaleffect komt uit gestapelde CSS-gradients,
+  niet uit een afbeelding, dus het blijft scherp op elk scherm.
+- Houd dat effect subtiel: "geen poespas, wel smaak" verdraagt geen chroomglans.
 - De drie smaakfamilies komen alleen terug als accent in de balk onder het logo:
   Krachtig `#6D5149`, Fruitig `#9F5456`, Rond `#B39963`. Fruitig is ook de
   hoverkleur van de primaire knop.
@@ -72,15 +79,17 @@ nodig). Quick Look rendert de SVG op een witte achtergrond, dus de alpha wordt
 per pixel teruggerekend — anders krijg je een witte rand om de letters op crème.
 
 ```bash
-qlmanage -t -s 2000 -o /tmp pow-coffee-krachtig.svg && python3 -c "
+qlmanage -t -s 2000 -o /tmp pow-coffee-black.svg && python3 -c "
 from PIL import Image
-src = Image.open('/tmp/pow-coffee-krachtig.svg.png').convert('RGB')
-INK, CREME = (0x2E,0x0D,0x08), (0xFA,0xF4,0xEA)
-a = src.getchannel('R').point(lambda v: max(0,min(255,round((255-v)*255/(255-INK[0])))))
+src = Image.open('/tmp/pow-coffee-black.svg.png').convert('RGB')
+INK, CREME = (0,0,0), (0xFA,0xF4,0xEA)
+a = src.getchannel('G').point(lambda v: max(0,min(255,round((255-v)*255/255))))
 logo = Image.new('RGBA', src.size, INK+(0,)); logo.putalpha(a); logo = logo.crop(a.getbbox())
 logo = logo.resize((620, round(logo.size[1]*620/logo.size[0])), Image.LANCZOS)
 c = Image.new('RGB', (1200,630), CREME)
-c.paste(logo, ((1200-logo.size[0])//2, (630-logo.size[1])//2), logo)
+c.paste(logo, ((1200-logo.size[0])//2, (630-logo.size[1])//2 - 12), logo)
+for i,col in enumerate([(0x6d,0x51,0x49),(0x9f,0x54,0x56),(0xb3,0x99,0x63)]):
+    c.paste(Image.new('RGB',(60,6),col), (600-90+i*60, (630+logo.size[1])//2 + 22))
 c.save('og.png', optimize=True)"
 ```
 
@@ -103,9 +112,11 @@ zijn tracking code sowieso voordat er toestemming is. Publiceer je later alsnog
 een beleid in HubSpot, haal deze banner dan weg: anders krijgen bezoekers er
 twee.
 
-Het aanmeldformulier staat hier los van. HubSpot Forms en reCAPTCHA laden pas
-als iemand op "Hou me op de hoogte" klikt; dat is een handeling die de bezoeker
-zelf start, en het formulier vraagt zelf om toestemming voor de gegevens.
+Het aanmeldformulier staat hier los van. HubSpot Forms laadt pas als iemand op
+"Hou me op de hoogte" klikt; dat is een handeling die de bezoeker zelf start, en
+het formulier vraagt zelf om toestemming voor de gegevens. reCAPTCHA is in
+HubSpot uitgezet: dat stuurde gegevens naar Google in de VS, wat botste met de
+privacyverklaring. Zet het niet terug aan zonder die verklaring aan te passen.
 
 ## Privacyverklaring
 
@@ -125,7 +136,7 @@ Maak je dit smaller, dan verdwijnt die knop weer onder de vouw.
 
 GitHub Pages stuurt `cache-control: max-age=600`. Na een deploy kan een
 bezoeker dus tot tien minuten de oude CSS of JS houden. Daarom hangt er een
-versienummer aan de links: `styles.css?v=3` en `script.js?v=3`. **Hoog dat
+versienummer aan de links: `styles.css?v=13` en `script.js?v=13`. **Hoog dat
 nummer op** zodra je een van die twee bestanden wijzigt, anders zien
 terugkerende bezoekers de oude versie.
 
@@ -143,34 +154,21 @@ tijdelijk en verhuist niet mee.
 ## Lokaal bekijken
 
 ```bash
-python3 -m http.server 4321
+python3 -m http.server 4325
 ```
 
-Daarna http://localhost:4321 openen.
+Daarna http://localhost:4325 openen.
 
 ## Merkregels die in de code zitten
 
 Deze volgen uit de merkbrief in Notion. Handig om te weten als je gaat aanpassen:
 
-- **Scherpe hoeken overal.** De ronde vorm is voorbehouden aan het logo, zodat de
-  ring herkenbaar blijft. Voeg dus geen `border-radius` toe.
-- **Kleuren:** Krachtig `#2E0D08` als tekstkleur op een crèmetint (`#FAF4EA`).
-  `#2E0D08` is ook de `fill` in de logo-SVG's, dus logo en tekst zijn één geheel.
-  Fruitig en Rond komen op deze pagina niet voor.
-- **Font:** Inter, **zelf gehost** vanuit `fonts/`. Zet dit niet terug naar een
-  `<link>` naar fonts.googleapis.com: Google Fonts stuurt het IP-adres van elke
-  bezoeker naar Google in de VS, bij elk bezoek en voor enige toestemming. Dat
-  botst met de privacyverklaring, die zegt dat er niets buiten de EER gaat.
-  Fraunces is niet nodig — het logo brengt zijn eigen letters mee als vector.
+- **Ronde hoeken mogen in alle toepassingen** (`--radius: 4px`). De merkbrief
+  heeft de eerdere regel "scherpe hoeken overal behalve het logo" na de
+  Milaan-trip losgelaten omdat die te hard aanvoelde.
+- **Kleuren:** zie de sectie Kleuren hierboven.
+- **Font:** Alpino, zelf gehost. Zie de sectie Lettertype hierboven.
 - **Toon:** altijd "je", nooit "u". Geen grote woorden van kleine dingen.
-- **De primaire knop is Krachtig met creme tekst** (16,3:1). Bij hover keert hij
-  om naar Fruitig met Krachtig tekst (6,54:1). Zet daar geen witte tekst op:
-  wit op `#F37868` haalt 2,73:1 en zakt onder de WCAG-ondergrens, ook die voor
-  grote tekst. Reken opnieuw voor je die combinatie wijzigt.
-
-## Als je later toch e-mails wil verzamelen
-
-Aanmeldingen wegschrijven naar Notion kan niet vanaf GitHub Pages: dat is puur
-statisch, en het Notion-token mag nooit in de broncode staan. Je hebt dan één
-klein endpoint elders nodig (een Cloudflare Worker is gratis en is één bestand),
-of je embedt een Tally-formulier met Tally's Notion-integratie.
+- **De primaire knop is zwart met crème tekst** (19,2:1). Bij hover keert hij om
+  naar Fruitig `#9F5456` met crème tekst (4,95:1). Zet daar geen donkere tekst
+  op: dat haalt 1,33:1. Reken opnieuw voor je die combinatie wijzigt.
