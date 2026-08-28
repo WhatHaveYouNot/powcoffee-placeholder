@@ -6,8 +6,9 @@ dependencies, geen JavaScript.
 ```
 index.html                 de pagina
 styles.css                 alle styling
-pow-coffee-krachtig.svg    het logo
-pow-mark-krachtig.svg      de losse ring, gebruikt als favicon
+pow-coffee-black.svg       het logo (zwarte lockup)
+pow-mark-black.svg         de losse ring, gebruikt als favicon
+fonts/                     Alpino, zelf gehost, met licentie
 og.png                     deelplaatje voor WhatsApp/LinkedIn (1200x630)
 ```
 
@@ -37,8 +38,32 @@ Twee dingen om daar recht te zetten, want ze botsen met de merkbrief:
 - De knop is HubSpot-oranje, niet Fruitig `#F37868`. Zet ook de tekstkleur op
   Krachtig `#2E0D08` en het lettertype op Inter.
 
-`pow-mark-krachtig.png` wordt niet door de site gebruikt; die kun je laten staan
-of weggooien.
+## Lettertype: Alpino
+
+Zelf gehost vanuit `fonts/`, een variabel bestand dat gewicht 100-900 dekt
+(44 kB). **De licentie verbiedt subsetten en formaatconversie** (ITF Free Font
+License, artikel 02), dus gebruik het meegeleverde woff2 ongewijzigd. De
+licentietekst staat in `fonts/Alpino-LICENSE.txt`.
+
+Laad het niet via een externe dienst: dat stuurt het IP-adres van elke bezoeker
+naar een derde partij, bij elk bezoek en voor enige toestemming. Dat botst met
+de privacyverklaring.
+
+Let op: deze repo is openbaar, dus het fontbestand is voor iedereen te
+downloaden van GitHub. Voor de website zelf is zelf-hosten expliciet toegestaan
+(artikel 01), maar de licentie verbiedt wel verspreiding via repositories.
+Wil je dat zeker afdekken, dan is de repo privé maken de veiligste route
+(vereist GitHub Pro voor Pages met een eigen domein).
+
+## Kleuren
+
+- Tekst en logo: **zwart** `#000000` op crème `#FAF4EA`.
+- De drie smaakfamilies komen alleen terug als accent in de balk onder het logo:
+  Krachtig `#6D5149`, Fruitig `#9F5456`, Rond `#B39963`. Fruitig is ook de
+  hoverkleur van de primaire knop.
+- Rond haalt 2,51:1 op crème en is dus **niet** geschikt voor tekst of
+  bedieningselementen. Daarom staat de betekenis van de balk ook als verborgen
+  tekst in de HTML.
 
 ## og.png opnieuw maken
 
