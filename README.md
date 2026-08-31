@@ -102,9 +102,13 @@ nakijken voor je hem als bindend beschouwt.
 
 ## Navigatie
 
-De homepage houdt zijn gecentreerde opzet en krijgt links onderaan; een
-balk bovenaan zou daar de "coming soon"-werking breken. De inhoudspagina's
-(`/over/`, `/privacy/`) delen wel een kop met logo, navigatie en kruimelpad.
+De homepage houdt zijn gecentreerde opzet en krijgt de paginalinks onderaan; een
+volle navigatiebalk bovenaan zou daar de "coming soon"-werking breken. De
+taalwisselaar staat er wél rechtsboven, zwevend, omdat dat de plek is waar
+mensen hem zoeken (zie de sectie hierboven).
+
+De inhoudspagina's (`/over/`, `/privacy/`) hebben een kop met logo,
+hoofdnavigatie en kruimelpad, met de taalbalk daarboven.
 
 Links naar interne pagina's altijd **met afsluitende slash** (`/privacy/`, niet
 `/privacy`). GitHub Pages stuurt anders een 301 en dat kost een extra
