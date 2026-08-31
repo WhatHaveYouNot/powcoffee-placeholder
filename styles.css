@@ -556,11 +556,16 @@ body {
    inhoud daarna te hoog hangen. */
 
 @media (max-width: 30rem) {
-  .page { padding-bottom: 11rem; }
+  .page { padding-bottom: 12rem; }
 
   body.banner-weg .page { padding-bottom: 2.5rem; }
 
   .pouch { width: clamp(10.5rem, 52vw, 13rem); }
+
+  /* De navigatielinks kosten een regel; die haal ik hier terug uit de
+     tussenruimtes, anders loopt de inhoud weer achter de banner. */
+  .pagelinks { margin-top: 1rem; gap: 1rem; }
+  .btn-cookies { margin-top: 1.25rem; }
 
   .tagline { margin-top: 1.5rem; }
   /* Niet .btn--sm meenemen: die staat eerder in het bestand, dus deze regel
@@ -568,5 +573,111 @@ body {
      de banner juist hoger maken. */
   .btn:not(.btn--sm) { margin-top: 1.5rem; padding: 0.85rem 1.75rem; }
   .contact { margin-top: 1.75rem; }
-  .btn-cookies { margin-top: 1.75rem; }
 }
+
+/* ---------- Sitekop met navigatie ----------
+   Alleen op inhoudspagina's. De homepage houdt zijn gecentreerde opzet en
+   krijgt in plaats daarvan links onderaan: een balk bovenaan zou daar de
+   "coming soon"-werking breken. */
+
+.site-head {
+  max-width: 44rem;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem 1.5rem;
+}
+
+.site-head__logo {
+  display: inline-block;
+  line-height: 0;
+  border-radius: var(--radius);
+}
+
+.site-head__logo img { display: block; width: 6.5rem; height: auto; }
+.site-head__logo:focus-visible { outline: 2px solid var(--ink); outline-offset: 4px; }
+
+.site-nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.site-nav a {
+  font-size: 0.9375rem;
+  color: var(--ink-70);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  padding-bottom: 2px;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+
+.site-nav a:hover { color: var(--ink); border-color: var(--ink); }
+.site-nav a:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+
+/* aria-current markeert de pagina waar je al bent. */
+.site-nav a[aria-current="page"] { color: var(--ink); border-color: var(--ink); }
+
+/* ---------- Kruimelpad ---------- */
+
+.crumbs {
+  max-width: 44rem;
+  margin: 0 auto;
+  padding: 1.75rem 1.5rem 0;
+}
+
+.crumbs ol {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 0.8125rem;
+  color: var(--ink-45);
+}
+
+.crumbs li + li::before {
+  content: "/";
+  margin-right: 0.5rem;
+  color: var(--ink-45);
+}
+
+.crumbs a {
+  color: var(--ink-70);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.crumbs a:hover { color: var(--ink); border-color: var(--ink); }
+.crumbs a:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+.crumbs [aria-current="page"] { color: var(--ink-70); }
+
+/* ---------- Links onderaan de homepage ---------- */
+
+.pagelinks {
+  margin: 1.5rem 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.25rem;
+  font-size: 0.875rem;
+}
+
+.pagelinks a {
+  color: var(--ink-70);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  padding-bottom: 1px;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+
+.pagelinks a:hover { color: var(--ink); border-color: var(--ink); }
+.pagelinks a:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }

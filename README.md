@@ -4,7 +4,10 @@ Eén statische pagina voor tot de Shopify-webshop live is. Geen build, geen
 dependencies, geen JavaScript.
 
 ```
-index.html                 de pagina
+index.html                 de homepage
+over/index.html            Over POW (staat op noindex, zie hieronder)
+privacy/index.html         privacyverklaring
+robots.txt, sitemap.xml    voor zoekmachines
 styles.css                 alle styling
 pow-coffee-black.svg       het logo (zwarte lockup)
 pow-mark-black.svg         de losse ring, gebruikt als favicon
@@ -12,8 +15,44 @@ fonts/                     Alpino, zelf gehost, met licentie
 og.png                     deelplaatje voor WhatsApp/LinkedIn (1200x630)
 ```
 
-De pagina heeft vier elementen: het logo, "binnenkort", een knop die het
-aanmeldformulier opent, en het e-mailadres.
+De homepage heeft vijf elementen: het logo op de zak, "binnenkort", een knop
+die het aanmeldformulier opent, het e-mailadres en twee links naar de
+inhoudspagina's.
+
+## Navigatie
+
+De homepage houdt zijn gecentreerde opzet en krijgt links onderaan; een
+balk bovenaan zou daar de "coming soon"-werking breken. De inhoudspagina's
+(`/over/`, `/privacy/`) delen wel een kop met logo, navigatie en kruimelpad.
+
+Links naar interne pagina's altijd **met afsluitende slash** (`/privacy/`, niet
+`/privacy`). GitHub Pages stuurt anders een 301 en dat kost een extra
+verbinding per klik.
+
+## Over-pagina staat op noindex
+
+`over/index.html` bevat nu **placeholdertekst** en heeft daarom
+`<meta name="robots" content="noindex, follow">`. Een dunne pagina laten
+indexeren schaadt je positie en moet je later opnieuw laten herindexeren.
+
+Bij het invullen van de definitieve tekst:
+
+1. Haal de robots-tag uit de `<head>`.
+2. Voeg `https://powcoffee.nl/over/` toe aan `sitemap.xml`.
+3. Verwijder de `PLACEHOLDER`-commentaarblokken uit de body.
+
+## SEO-tags per pagina
+
+Alle drie de pagina's hebben titel, meta description, canonical, Open Graph,
+Twitter card en JSON-LD. De structured data is verdeeld als:
+
+- **Homepage:** `Organization` met KvK-adres, btw-ID en e-mail uit de
+  privacyverklaring.
+- **Over:** `Organization` + `AboutPage` + `BreadcrumbList`.
+- **Privacy:** `BreadcrumbList`.
+
+Houd `og:url` en de canonical gelijk, inclusief de slash. Die liepen eerder
+uiteen op de privacypagina.
 
 ## Het aanmeldformulier
 

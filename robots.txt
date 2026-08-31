@@ -1,0 +1,5 @@
+# powcoffee.nl
+User-agent: *
+Allow: /
+
+Sitemap: https://powcoffee.nl/sitemap.xml
