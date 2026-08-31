@@ -122,6 +122,14 @@ verbinding per klik.
 Sebastiaan, in beide talen door hem aangeleverd. Beide staan op `index, follow`,
 staan in de sitemap en zijn vanuit de navigatie bereikbaar.
 
+Het contactblok onderaan is een callout (`.callout`), geen gewone sectie: het
+is een uitnodiging om iets te doen, geen leestekst. Het e-mailadres is daarin
+het zwaartepunt.
+
+De selectors staan met `.doc` ervoor (`.doc .callout h2`). Zonder dat winnen
+`.doc h2` en `.doc p` op specificiteit en houdt de kop zijn scheidingslijn en
+marges van een gewone sectiekop. Datzelfde ging eerder mis bij de openingsvraag.
+
 De ondertekening onderaan gebruikt de smaakfamiliebalk in het klein in plaats
 van een grijze scheidingslijn. Die lijn botste met de identieke lijn boven de
 kop "Contact" eronder: twee dezelfde strepen op 44px van elkaar lazen als een
