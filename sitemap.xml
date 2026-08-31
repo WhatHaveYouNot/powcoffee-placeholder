@@ -38,7 +38,22 @@
     <priority>0.3</priority>
   </url>
 
-  <!-- /over/ en /en/about/ staan hier bewust nog niet in: die pagina's hebben
-       nog placeholdertekst en staan op noindex. Voeg beide tegelijk toe zodra
-       de definitieve tekst erin staat. -->
+  <url>
+    <loc>https://powcoffee.nl/over/</loc>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://powcoffee.nl/over/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://powcoffee.nl/en/about/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://powcoffee.nl/over/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://powcoffee.nl/en/about/</loc>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://powcoffee.nl/over/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://powcoffee.nl/en/about/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://powcoffee.nl/over/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
 </urlset>

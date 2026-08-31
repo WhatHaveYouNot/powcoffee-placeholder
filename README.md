@@ -75,28 +75,18 @@ Links naar interne pagina's altijd **met afsluitende slash** (`/privacy/`, niet
 `/privacy`). GitHub Pages stuurt anders een 301 en dat kost een extra
 verbinding per klik.
 
-## De Over-pagina staat live maar is niet gelinkt
+## Over-pagina
 
-`over/index.html` en `en/about/index.html` bevatten **placeholdertekst**. Ze
-staan wel op de server (zodat je ze op hun echte URL kunt bekijken), maar:
+`over/index.html` en `en/about/index.html` bevatten de definitieve tekst van
+Sebastiaan, in beide talen door hem aangeleverd. Beide staan op `index, follow`,
+staan in de sitemap en zijn vanuit de navigatie bereikbaar.
 
-- ze staan op `noindex, follow`, dus zoekmachines nemen ze niet op;
-- ze staan niet in `sitemap.xml`;
-- **er wordt nergens naar gelinkt**, dus een bezoeker komt er niet per ongeluk.
+De openingsvraag staat bewust als `h2` en niet als gewone alinea: "waarom lukt
+het jou nou niet om thuis écht lekkere koffie te zetten" is precies wat mensen
+intypen als hun koffie tegenvalt. Dat is de sterkste zoekterm die de site heeft.
 
-Alleen `noindex` is niet genoeg: dat houdt zoekmachines tegen, geen mensen.
-Zolang er een link in de navigatie staat, kan iemand op "Over POW" klikken en
-"Hier komt de openingsalinea" lezen.
-
-### Checklist bij het invullen van de definitieve tekst
-
-1. Haal de `robots`-tag uit beide `<head>`s.
-2. Voeg `https://powcoffee.nl/over/` en `https://powcoffee.nl/en/about/` toe aan
-   `sitemap.xml`, met hun `xhtml:link`-verwijzingen naar elkaar.
-3. Verwijder de `PLACEHOLDER`-commentaarblokken uit beide bodies.
-4. Zet de links terug: in `index.html` en `en/index.html` bij de paginalinks, en
-   in beide privacypagina's als navigatie-item. Zoek op het commentaar
-   "Link naar de Over-pagina staat uit".
+De smaakfamilienamen blijven ook in de Engelse tekst Nederlands, met een
+`lang="nl"`-markering zodat een screenreader ze goed uitspreekt.
 
 ## SEO-tags per pagina
 

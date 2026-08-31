@@ -738,3 +738,32 @@ body {
   border-radius: var(--radius);
   font-size: 0.9375rem;
 }
+
+/* De openingsvraag op de Over-pagina. Groter dan een gewone tussenkop: het is
+   de vraag waar het hele verhaal een antwoord op is, en precies de zin die
+   mensen intypen als hun koffie thuis tegenvalt. */
+/* Met .doc ervoor, anders wint de border-top van ".doc h2" op specificiteit
+   en blijft er een streep boven de vraag staan. */
+.doc .doc__vraag {
+  margin-top: 1.5rem;
+  padding-top: 0;
+  border-top: 0;
+  font-size: clamp(1.3rem, 1.05rem + 1.1vw, 1.65rem);
+  line-height: 1.25;
+  max-width: 34ch;
+}
+
+.doc__ondertekening {
+  margin-top: 2.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.12);
+  font-weight: 600;
+  color: var(--ink);
+  line-height: 1.5;
+}
+
+.doc__ondertekening span {
+  font-weight: 400;
+  font-size: 0.9375rem;
+  color: var(--ink-70);
+}
