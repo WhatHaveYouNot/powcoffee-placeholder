@@ -75,17 +75,28 @@ Links naar interne pagina's altijd **met afsluitende slash** (`/privacy/`, niet
 `/privacy`). GitHub Pages stuurt anders een 301 en dat kost een extra
 verbinding per klik.
 
-## Over-pagina staat op noindex
+## De Over-pagina staat live maar is niet gelinkt
 
-`over/index.html` bevat nu **placeholdertekst** en heeft daarom
-`<meta name="robots" content="noindex, follow">`. Een dunne pagina laten
-indexeren schaadt je positie en moet je later opnieuw laten herindexeren.
+`over/index.html` en `en/about/index.html` bevatten **placeholdertekst**. Ze
+staan wel op de server (zodat je ze op hun echte URL kunt bekijken), maar:
 
-Bij het invullen van de definitieve tekst:
+- ze staan op `noindex, follow`, dus zoekmachines nemen ze niet op;
+- ze staan niet in `sitemap.xml`;
+- **er wordt nergens naar gelinkt**, dus een bezoeker komt er niet per ongeluk.
 
-1. Haal de robots-tag uit de `<head>`.
-2. Voeg `https://powcoffee.nl/over/` toe aan `sitemap.xml`.
-3. Verwijder de `PLACEHOLDER`-commentaarblokken uit de body.
+Alleen `noindex` is niet genoeg: dat houdt zoekmachines tegen, geen mensen.
+Zolang er een link in de navigatie staat, kan iemand op "Over POW" klikken en
+"Hier komt de openingsalinea" lezen.
+
+### Checklist bij het invullen van de definitieve tekst
+
+1. Haal de `robots`-tag uit beide `<head>`s.
+2. Voeg `https://powcoffee.nl/over/` en `https://powcoffee.nl/en/about/` toe aan
+   `sitemap.xml`, met hun `xhtml:link`-verwijzingen naar elkaar.
+3. Verwijder de `PLACEHOLDER`-commentaarblokken uit beide bodies.
+4. Zet de links terug: in `index.html` en `en/index.html` bij de paginalinks, en
+   in beide privacypagina's als navigatie-item. Zoek op het commentaar
+   "Link naar de Over-pagina staat uit".
 
 ## SEO-tags per pagina
 
