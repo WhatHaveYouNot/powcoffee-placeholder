@@ -120,6 +120,11 @@ verbinding per klik.
 Sebastiaan, in beide talen door hem aangeleverd. Beide staan op `index, follow`,
 staan in de sitemap en zijn vanuit de navigatie bereikbaar.
 
+De ondertekening onderaan gebruikt de smaakfamiliebalk in het klein in plaats
+van een grijze scheidingslijn. Die lijn botste met de identieke lijn boven de
+kop "Contact" eronder: twee dezelfde strepen op 44px van elkaar lazen als een
+fout. De balk komt uit een gradient, dus de HTML is in beide talen gelijk.
+
 De openingsvraag staat bewust als `h2` en niet als gewone alinea: "waarom lukt
 het jou nou niet om thuis écht lekkere koffie te zetten" is precies wat mensen
 intypen als hun koffie tegenvalt. Dat is de sterkste zoekterm die de site heeft.

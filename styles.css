@@ -764,16 +764,40 @@ body {
   max-width: 34ch;
 }
 
+/* De ondertekening sluit een persoonlijk verhaal af, dus geen gewone
+   sectiescheiding. De grijze streep die hier stond botste bovendien met de
+   identieke streep boven de kop "Contact" eronder: twee dezelfde lijnen op
+   44px van elkaar lazen als een fout.
+
+   In plaats daarvan de smaakfamiliebalk uit het merk, in het klein. Die komt
+   ook op de zak terug en maakt van de afsluiting een merkgebaar in plaats van
+   een scheidingslijn. Met een gradient in plaats van drie elementen, zodat de
+   HTML gelijk blijft in beide talen. */
 .doc__ondertekening {
-  margin-top: 2.5rem;
-  padding-top: 1.5rem;
-  border-top: 1px solid rgba(0, 0, 0, 0.12);
+  margin-top: 3rem;
   font-weight: 600;
   color: var(--ink);
-  line-height: 1.5;
+  line-height: 1.45;
+}
+
+.doc__ondertekening::before {
+  content: "";
+  display: block;
+  width: 4.5rem;
+  height: 5px;
+  margin-bottom: 1.25rem;
+  border-radius: 1px;
+  background: linear-gradient(
+    90deg,
+    var(--krachtig) 0 33.34%,
+    var(--fruitig) 33.34% 66.67%,
+    var(--rond) 66.67% 100%
+  );
 }
 
 .doc__ondertekening span {
+  display: block;
+  margin-top: 0.15rem;
   font-weight: 400;
   font-size: 0.9375rem;
   color: var(--ink-70);
