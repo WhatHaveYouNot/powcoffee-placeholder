@@ -556,16 +556,19 @@ body {
    inhoud daarna te hoog hangen. */
 
 @media (max-width: 30rem) {
-  .page { padding-bottom: 12rem; }
+  .page { padding-bottom: 13rem; }
 
   body.banner-weg .page { padding-bottom: 2.5rem; }
 
-  .pouch { width: clamp(10.5rem, 52vw, 13rem); }
+  .pouch { width: clamp(9.5rem, 46vw, 12rem); }
 
-  /* De navigatielinks kosten een regel; die haal ik hier terug uit de
-     tussenruimtes, anders loopt de inhoud weer achter de banner. */
+  /* De navigatielinks en de taalwisselaar kosten samen twee regels; die haal ik
+     hier terug uit de zak en de tussenruimtes, anders loopt de inhoud achter de
+     cookiebanner. Let op: de pagina centreert verticaal, dus elke bespaarde
+     pixel levert er maar een halve op aan de onderkant. */
   .pagelinks { margin-top: 1rem; gap: 1rem; }
-  .btn-cookies { margin-top: 1.25rem; }
+  .pagelinks + .pagelinks { margin-top: 0.5rem; }
+  .btn-cookies { margin-top: 1rem; }
 
   .tagline { margin-top: 1.5rem; }
   /* Niet .btn--sm meenemen: die staat eerder in het bestand, dus deze regel
@@ -681,3 +684,57 @@ body {
 
 .pagelinks a:hover { color: var(--ink); border-color: var(--ink); }
 .pagelinks a:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+
+/* ---------- Taalwisselaar ----------
+   Beide talen staan er altijd in, elk in de eigen taal geschreven. De actieve
+   taal is gemarkeerd met aria-current, zodat het ook zonder kleurverschil
+   duidelijk is welke taal je nu leest.
+
+   Het lang-attribuut per link is geen sier: zonder dat spreekt een screenreader
+   "English" uit met een Nederlandse tongval en andersom. */
+
+.lang {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8125rem;
+}
+
+.lang a {
+  color: var(--ink-45);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  padding-bottom: 1px;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+
+.lang a:hover { color: var(--ink); }
+.lang a:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+
+.lang a[aria-current="true"] {
+  color: var(--ink);
+  border-color: var(--ink);
+}
+
+.lang__sep {
+  color: var(--ink-45);
+  user-select: none;
+}
+
+/* In de sitekop staat de taalwisselaar naast de navigatie. */
+.site-head__right {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem 1.5rem;
+}
+
+/* Melding dat een vertaling niet de leidende versie is. */
+.doc__note {
+  margin: 1.5rem 0 0;
+  padding: 0.9rem 1.1rem;
+  background: rgba(0, 0, 0, 0.04);
+  border-left: 3px solid var(--krachtig);
+  border-radius: var(--radius);
+  font-size: 0.9375rem;
+}

@@ -4,9 +4,12 @@ Eén statische pagina voor tot de Shopify-webshop live is. Geen build, geen
 dependencies, geen JavaScript.
 
 ```
-index.html                 de homepage
-over/index.html            Over POW (staat op noindex, zie hieronder)
-privacy/index.html         privacyverklaring
+index.html                 NL homepage
+over/index.html            NL Over POW (noindex, zie hieronder)
+privacy/index.html         NL privacyverklaring
+en/index.html              EN homepage
+en/about/index.html        EN About POW (noindex)
+en/privacy/index.html      EN privacy statement
 robots.txt, sitemap.xml    voor zoekmachines
 styles.css                 alle styling
 pow-coffee-black.svg       het logo (zwarte lockup)
@@ -18,6 +21,49 @@ og.png                     deelplaatje voor WhatsApp/LinkedIn (1200x630)
 De homepage heeft vijf elementen: het logo op de zak, "binnenkort", een knop
 die het aanmeldformulier opent, het e-mailadres en twee links naar de
 inhoudspagina's.
+
+## Twee talen
+
+Nederlands op `/`, Engels op `/en/`. De Engelse paden zijn Engels
+(`/en/about/`, niet `/en/over/`).
+
+| Nederlands | Engels |
+| --- | --- |
+| `/` | `/en/` |
+| `/over/` | `/en/about/` |
+| `/privacy/` | `/en/privacy/` |
+
+**De taalwisselaar springt naar de equivalente pagina**, niet naar de homepage.
+Wie op `/en/about/` staat en op Nederlands klikt, komt op `/over/` uit. Voeg je
+een pagina toe, werk dan beide kanten bij.
+
+Beide taalnamen staan er altijd in, elk in de eigen taal geschreven, met een
+`lang`-attribuut per link. Zonder dat spreekt een screenreader "English" uit met
+een Nederlandse tongval.
+
+### hreflang
+
+Elke pagina heeft `hreflang` naar zichzelf, naar de andere taal en een
+`x-default` die naar de Nederlandse versie wijst. **Die verwijzingen moeten
+wederkerig zijn**: als A naar B wijst maar B niet terug naar A, negeert Google
+het hele stel. De sitemap herhaalt dezelfde verwijzingen.
+
+De canonical van elke pagina wijst naar zichzelf, niet naar de andere taal.
+
+### Wat nog Nederlands is op de Engelse site
+
+Het **HubSpot-formulier**. Dat is in HubSpot ingericht en niet vanuit deze code
+te vertalen. Een Engelse bezoeker krijgt nu Nederlandse velden en
+toestemmingsteksten. Maak een tweede formulier in HubSpot en zet het `form-id`
+om in `en/index.html`.
+
+De **smaakfamilienamen** (Krachtig, Fruitig, Rond) blijven bewust Nederlands:
+dat zijn merknamen. Ze staan met `lang="nl"` gemarkeerd zodat ze goed worden
+uitgesproken.
+
+De **Engelse privacyverklaring** is een vertaling met een clausule dat de
+Nederlandse versie leidend is. Laat die door iemand met juridische kennis
+nakijken voor je hem als bindend beschouwt.
 
 ## Navigatie
 
