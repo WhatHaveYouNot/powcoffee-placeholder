@@ -2,13 +2,18 @@
    Regelt drie dingen:
    - het aanmeldformulier achter een knop, met HubSpot Forms pas op klik
    - de cookiebanner
-   - de HubSpot tracking code, die pas laadt na toestemming */
+   - de tracking van HubSpot en Microsoft Clarity, die pas laadt na toestemming
+
+   Clarity is bewust NIET los in de HTML gezet zoals de standaardsnippet doet.
+   Het zet niet-essentiele cookies en maakt sessieopnames; dat mag pas na een
+   expliciet akkoord. Microsoft eist dat zelf ook voor Europese bezoekers. */
 
 (function () {
   'use strict';
 
   var FORMS_SCRIPT = 'https://js-eu1.hsforms.net/forms/embed/149139429.js';
   var TRACKING_SCRIPT = 'https://js-eu1.hs-scripts.com/149139429.js';
+  var CLARITY_ID = 'yb172xkpo7';
   var CONSENT_KEY = 'pow-cookie-consent';
 
   function addScript(src, id) {
@@ -49,8 +54,20 @@
   // accepteert en daarna intrekt.
   var trackingLoaded = false;
 
+  // Microsoft's eigen snippet, alleen uitgesteld tot na toestemming. De
+  // wachtrij-functie hoort erbij: Clarity's tag leest die uit zodra hij laadt,
+  // en zonder blijft window.clarity leeg.
+  function loadClarity() {
+    if (window.clarity) return;
+    window.clarity = window.clarity || function () {
+      (window.clarity.q = window.clarity.q || []).push(arguments);
+    };
+    addScript('https://www.clarity.ms/tag/' + CLARITY_ID, 'clarity-loader');
+  }
+
   function loadTracking() {
     addScript(TRACKING_SCRIPT, 'hs-script-loader');
+    loadClarity();
     trackingLoaded = true;
   }
 
@@ -102,8 +119,13 @@
     loadTracking();
   });
 
-  // Cookies die HubSpot plaatst zodra de tracking code draait.
-  var HUBSPOT_COOKIES = ['__hstc', 'hubspotutk', '__hssrc', '__hssc'];
+  // Cookies die de tracking code plaatst zodra hij draait. HubSpot en Clarity
+  // zetten alleen deze op ons eigen domein; wat Microsoft op clarity.ms zet
+  // kunnen we van hieruit niet verwijderen.
+  var TRACKING_COOKIES = [
+    '__hstc', 'hubspotutk', '__hssrc', '__hssc',  // HubSpot
+    '_clck', '_clsk'                              // Microsoft Clarity
+  ];
 
   function clearTrackingCookies() {
     var host = window.location.hostname;
@@ -113,7 +135,7 @@
     var parts = host.split('.');
     if (parts.length > 2) domains.push('.' + parts.slice(-2).join('.'));
 
-    HUBSPOT_COOKIES.forEach(function (name) {
+    TRACKING_COOKIES.forEach(function (name) {
       domains.forEach(function (d) {
         var c = name + '=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/';
         document.cookie = d ? c + '; domain=' + d : c;
