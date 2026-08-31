@@ -22,6 +22,41 @@ De homepage heeft vijf elementen: het logo op de zak, "binnenkort", een knop
 die het aanmeldformulier opent, het e-mailadres en twee links naar de
 inhoudspagina's.
 
+## Positionering van navigatie en taalwisselaar
+
+Gebaseerd op onderzoek, niet op smaak:
+
+- **Taalwisselaar in de bovenhoek**, rechts. Nielsen Norman Group ("6 Tips for
+  Improving Language Switchers on Ecommerce Sites"): op desktop in een
+  bovenhoek, want daar zoeken mensen utility-functies; op mobiel boven de vouw.
+  Stond eerst onderaan de homepage, op 65% van de pagina.
+- **Utility-navigatie bóven de hoofdnavigatie**, niet ernaast. NN/g
+  "Menu-Design Checklist". Op inhoudspagina's staat de taalbalk daarom op een
+  eigen regel boven logo en menu.
+- **Taalnamen in de eigen taal, geen vlaggen.** Een vlag staat voor een land,
+  niet voor een taal.
+- **Klikdoelen minimaal 24x24 px** (WCAG 2.5.8). Ze waren 23px; nu 29px.
+- **Huidige pagina gemarkeerd** met `aria-current`. Baymard vindt dat 91% van de
+  sites dit niet doet en noemt het een fout: zonder markering raken bezoekers
+  de weg kwijt.
+
+Automatisch doorsturen op browsertaal doen we bewust **niet**. NN/g raadt
+detectie aan, maar Google waarschuwt tegen automatische omleidingen: crawlers
+zien dan maar een van beide talen, en wie bewust de andere taal koos wordt
+teruggegooid.
+
+## Ruimte onder de cookiebanner
+
+`.page` reserveert onderaan net zoveel ruimte als de banner hoog is, via
+`--banner-hoogte`. `script.js` meet die hoogte en houdt hem bij met een
+`ResizeObserver`.
+
+Leg die hoogte niet vast in CSS. Dat was de eerste opzet: vaste waardes achter
+een `max-width`-breekpunt. Die klopten alleen op de schermen waarop ze getest
+waren; op een breed maar laag scherm (1000x760) dekte de banner 168px aan
+inhoud af, inclusief de navigatielinks. Het probleem is de schermhoogte, niet
+de breedte.
+
 ## Twee talen
 
 Nederlands op `/`, Engels op `/en/`. De Engelse paden zijn Engels

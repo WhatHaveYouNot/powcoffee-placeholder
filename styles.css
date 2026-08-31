@@ -82,7 +82,9 @@ body {
   justify-content: center;
   align-items: center;
   text-align: center;
-  padding: 2.5rem 1.5rem;
+  /* Onderaan net zoveel ruimte als de cookiebanner inneemt; script.js meet die
+     hoogte en zet --banner-hoogte. Is de banner weg, dan is die 0. */
+  padding: 2.5rem 1.5rem calc(2.5rem + var(--banner-hoogte, 0px));
 }
 
 /* ---------- Logo ---------- */
@@ -547,35 +549,19 @@ body {
 }
 
 /* ---------- Smalle schermen ----------
-   De staande zak maakt de pagina hoog. Op een telefoon liep de inhoud daardoor
-   achter de cookiebanner, die onderaan vaststaat.
-
-   Twee dingen lossen dat op: een compactere zak, en ruimte onderaan zodat het
-   verticaal centreren boven de banner gebeurt. Die ruimte vervalt zodra de
-   banner weg is (script.js zet dan .banner-weg op de body), anders zou de
-   inhoud daarna te hoog hangen. */
+   Alleen nog maatvoering. De ruimte onder de inhoud regelt .page zelf via
+   --banner-hoogte; dat werkt op elk formaat, ook op een breed maar laag
+   scherm waar een breedte-breekpunt niets doet. */
 
 @media (max-width: 30rem) {
-  .page { padding-bottom: 13rem; }
-
-  body.banner-weg .page { padding-bottom: 2.5rem; }
-
   .pouch { width: clamp(9.5rem, 46vw, 12rem); }
 
-  /* De navigatielinks en de taalwisselaar kosten samen twee regels; die haal ik
-     hier terug uit de zak en de tussenruimtes, anders loopt de inhoud achter de
-     cookiebanner. Let op: de pagina centreert verticaal, dus elke bespaarde
-     pixel levert er maar een halve op aan de onderkant. */
   .pagelinks { margin-top: 1rem; gap: 1rem; }
-  .pagelinks + .pagelinks { margin-top: 0.5rem; }
-  .btn-cookies { margin-top: 1rem; }
-
-  .tagline { margin-top: 1.5rem; }
-  /* Niet .btn--sm meenemen: die staat eerder in het bestand, dus deze regel
-     zou anders de padding van de knoppen in de cookiebanner overschrijven en
-     de banner juist hoger maken. */
   .btn:not(.btn--sm) { margin-top: 1.5rem; padding: 0.85rem 1.75rem; }
+  .tagline { margin-top: 1.5rem; }
   .contact { margin-top: 1.75rem; }
+  .btn-cookies { margin-top: 1.25rem; }
+}
 }
 
 /* ---------- Sitekop met navigatie ----------
@@ -686,34 +672,67 @@ body {
 .pagelinks a:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
 
 /* ---------- Taalwisselaar ----------
-   Beide talen staan er altijd in, elk in de eigen taal geschreven. De actieve
-   taal is gemarkeerd met aria-current, zodat het ook zonder kleurverschil
-   duidelijk is welke taal je nu leest.
+   Positionering volgt de UX-normen die hiervoor het beste onderzocht zijn:
 
-   Het lang-attribuut per link is geen sier: zonder dat spreekt een screenreader
-   "English" uit met een Nederlandse tongval en andersom. */
+   - Nielsen Norman Group ("6 Tips for Improving Language Switchers"): op
+     desktop in een bovenhoek, want daar zoeken mensen utility-functies. Op
+     mobiel boven de vouw. Taalnamen in de eigen taal, geen vlaggen: een vlag
+     staat voor een land, niet voor een taal.
+   - NN/g "Menu-Design Checklist": utility-navigatie staat bóven de
+     hoofdnavigatie, niet ernaast, zodat de twee niveaus niet door elkaar lopen.
+   - WCAG 2.5.8: klikdoelen minimaal 24 bij 24 px.
+
+   Automatisch doorsturen op browsertaal doen we bewust niet. NN/g raadt
+   detectie aan, maar Google waarschuwt expliciet tegen automatische
+   omleidingen: crawlers zien dan maar een van beide talen, en een bezoeker die
+   bewust de andere taal koos wordt teruggegooid. */
+
+.utilbar {
+  display: flex;
+  justify-content: flex-end;
+  max-width: 44rem;
+  margin: 0 auto;
+  padding: 0.75rem 1.5rem 0;
+}
+
+/* Op de homepage staat de wisselaar los in de bovenhoek: die pagina heeft geen
+   kop, en een balk zou de "coming soon"-opzet breken. Absoluut gepositioneerd,
+   zodat het verticaal centreren van de inhoud eronder niet verschuift. */
+.utilbar--zwevend {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 2;
+  max-width: none;
+  padding: 0.75rem 1rem 0;
+}
 
 .lang {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.15rem;
   font-size: 0.8125rem;
 }
 
+/* De padding brengt het klikdoel op 24px hoog, de ondergrens van WCAG 2.5.8. */
 .lang a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 24px;
+  padding: 0.25rem 0.5rem;
+  border-radius: var(--radius);
   color: var(--ink-45);
   text-decoration: none;
-  border-bottom: 1px solid transparent;
-  padding-bottom: 1px;
-  transition: color 0.15s ease, border-color 0.15s ease;
+  transition: color 0.15s ease, background-color 0.15s ease;
 }
 
-.lang a:hover { color: var(--ink); }
-.lang a:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+.lang a:hover { color: var(--ink); background: rgba(0, 0, 0, 0.05); }
+.lang a:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
 
 .lang a[aria-current="true"] {
   color: var(--ink);
-  border-color: var(--ink);
+  font-weight: 600;
 }
 
 .lang__sep {
@@ -721,13 +740,6 @@ body {
   user-select: none;
 }
 
-/* In de sitekop staat de taalwisselaar naast de navigatie. */
-.site-head__right {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.75rem 1.5rem;
-}
 
 /* Melding dat een vertaling niet de leidende versie is. */
 .doc__note {

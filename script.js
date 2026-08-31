@@ -54,11 +54,29 @@
     trackingLoaded = true;
   }
 
-  // Op smalle schermen houdt de pagina ruimte vrij onder de inhoud zolang de
-  // banner in beeld staat. Zonder die markering zou de inhoud daar achter
-  // verdwijnen; met de markering valt de ruimte weg zodra de banner weg is.
+  // De banner staat vast onderaan en zou anders inhoud afdekken. De pagina
+  // houdt daaronder net zoveel ruimte vrij als de banner hoog is.
+  //
+  // Die hoogte hier meten en niet in CSS vastleggen: hij hangt af van de
+  // schermbreedte, het lettertype en hoeveel regels de tekst wordt. Een vaste
+  // waarde per breekpunt klopte alleen op de schermen waarop hij getest was;
+  // op een breed maar laag scherm dekte de banner alsnog de navigatie af.
+  function meetBanner() {
+    var hoogte = banner.hidden ? 0 : banner.offsetHeight + 24; // 24 = ruimte eronder
+    document.documentElement.style.setProperty('--banner-hoogte', hoogte + 'px');
+  }
+
   function markeerBanner() {
     document.body.classList.toggle('banner-weg', banner.hidden);
+    meetBanner();
+  }
+
+  // Bij draaien of van formaat veranderen kan de banner meer of minder regels
+  // worden, dus opnieuw meten.
+  if (window.ResizeObserver) {
+    new ResizeObserver(meetBanner).observe(banner);
+  } else {
+    window.addEventListener('resize', meetBanner);
   }
 
   function hideBanner() {
