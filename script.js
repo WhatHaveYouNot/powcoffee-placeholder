@@ -63,6 +63,17 @@
       (window.clarity.q = window.clarity.q || []).push(arguments);
     };
     addScript('https://www.clarity.ms/tag/' + CLARITY_ID, 'clarity-loader');
+
+    // Zonder deze aanroep blijft Clarity in "no-consent"-modus draaien: geen
+    // cookies, en geen bezoek dat over meerdere pagina's te volgen is.
+    //
+    // ad_Storage staat bewust op denied. De banner vraagt alleen toestemming
+    // om te zien hoe de site gebruikt wordt, niet voor advertentiedoeleinden;
+    // granted zou meer claimen dan de bezoeker heeft gegeven.
+    window.clarity('consentv2', {
+      ad_Storage: 'denied',
+      analytics_Storage: 'granted'
+    });
   }
 
   function loadTracking() {
