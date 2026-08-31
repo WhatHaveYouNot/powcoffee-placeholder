@@ -832,20 +832,22 @@ body {
   color: var(--ink-70);
 }
 
-.doc .callout p { margin-top: 0.6rem; }
+.doc .callout p {
+  margin-top: 0.6rem;
+  font-size: 1.0625rem;
+  color: var(--ink);
+}
 
-.doc .callout__actie { margin-top: 0.35rem; }
-
-.doc .callout__actie a {
-  display: inline-block;
-  min-height: 24px;
-  padding: 0.2rem 0;
-  font-size: 1.125rem;
+/* Het adres staat nu in de zin en niet meer los eronder, dus het houdt de
+   tekstgrootte aan. Het gewicht en de dikkere onderstreping laten het wel
+   opvallen als de actie in dit blok. */
+.doc .callout a {
   font-weight: 600;
   color: var(--ink);
   border-bottom: 2px solid rgba(0, 0, 0, 0.25);
+  padding-bottom: 1px;
   transition: border-color 0.15s ease;
 }
 
-.doc .callout__actie a:hover { border-color: var(--ink); }
-.doc .callout__actie a:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+.doc .callout a:hover { border-color: var(--ink); }
+.doc .callout a:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
