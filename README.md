@@ -1,17 +1,19 @@
 # powcoffee.nl — placeholder
 
-Eén statische pagina voor tot de Shopify-webshop live is. Geen build, geen
-dependencies, geen JavaScript.
+Statische site voor tot de Shopify-webshop live is. Zes pagina's in twee talen.
+Geen build en geen dependencies; wel een klein `script.js` voor de cookiebanner
+en het formuliervenster.
 
 ```
 index.html                 NL homepage
-over/index.html            NL Over POW (noindex, zie hieronder)
+over/index.html            NL Over POW
 privacy/index.html         NL privacyverklaring
 en/index.html              EN homepage
-en/about/index.html        EN About POW (noindex)
+en/about/index.html        EN About POW
 en/privacy/index.html      EN privacy statement
 robots.txt, sitemap.xml    voor zoekmachines
 styles.css                 alle styling
+script.js                  cookiebanner en formuliervenster
 pow-coffee-black.svg       het logo (zwarte lockup)
 pow-mark-black.svg         de losse ring, gebruikt als favicon
 fonts/                     Alpino, zelf gehost, met licentie
