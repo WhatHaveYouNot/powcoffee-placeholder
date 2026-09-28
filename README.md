@@ -25,6 +25,10 @@ De homepage bestaat uit drie delen: een opening met het logo op de zak,
 versie van het verhaal met een link naar `/over/`; en onderaan een voet met het
 e-mailadres, de paginalinks en de cookie-instellingen.
 
+Tussen de opening en het verhaal staat een korte streep op de middenas
+(`.hero::after`), niet over de volle breedte: die volle lijn is het gebaar van
+de voet, en twee daarvan zou de pagina in vakken hakken.
+
 De pagina vulde eerst het volle scherm met een gecentreerd blok
 (`min-height: 100dvh` plus `justify-content: center`). Daardoor viel alles wat
 eronder kwam per definitie onder de vouw. Die twee regels zijn eruit; de zak is

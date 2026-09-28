@@ -95,6 +95,19 @@ body {
   padding: 2.25rem 0 2rem;
 }
 
+/* Scheiding tussen de opening en het verhaal. Kort en op de middenas, want de
+   opening is gecentreerd; een lijn over de volle breedte hoort bij de voet en
+   zou hier als tweede zware scheiding lezen. Licht genoeg om alleen als adem
+   te werken, niet als kader. */
+.hero::after {
+  content: "";
+  display: block;
+  width: 3rem;
+  height: 1px;
+  margin-top: 2rem;
+  background: rgba(0, 0, 0, 0.16);
+}
+
 /* ---------- Logo ---------- */
 
 /* ---------- Koffiezak in RVS ----------
