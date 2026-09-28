@@ -855,8 +855,12 @@ body {
    In plaats daarvan de smaakfamiliebalk uit het merk, in het klein. Die komt
    ook op de zak terug en maakt van de afsluiting een merkgebaar in plaats van
    een scheidingslijn. Met een gradient in plaats van drie elementen, zodat de
-   HTML gelijk blijft in beide talen. */
-.doc__ondertekening {
+   HTML gelijk blijft in beide talen.
+
+   Met .doc ervoor, anders wint ".doc p" (0,1,1) op specificiteit van deze
+   klasse (0,1,0) en staat de bovenmarge stilletjes op 1rem. Dezelfde val als
+   bij de openingsvraag en de callout. */
+.doc .doc__ondertekening {
   margin-top: 3rem;
   font-weight: 600;
   color: var(--ink);
@@ -935,21 +939,15 @@ body {
 .doc .callout a:hover { border-color: var(--ink); }
 .doc .callout a:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
 
-/* ---------- Aanmelding onder het verhaal ----------
-   Bewust geen kader. De ondertekening erboven heeft al de kleurbalk en het
-   contactblok eronder is al een kader; een derde vlak ertussen maakt van het
-   einde van de pagina een rij dozen. Een zin en een knop is genoeg, de knop
-   trekt zelf de aandacht wel. */
+/* ---------- Aanmelding aan het eind van het verhaal ----------
+   Staat tussen de laatste zin en de ondertekening: het verhaal eindigt met "de
+   keuze is aan jou", en dat is het moment om de keuze aan te bieden. Bewust
+   geen kader eromheen; de knop trekt zelf de aandacht wel, en het contactblok
+   verderop is al een vlak. */
 
 .doc .cta { margin-top: 3rem; }
 
-.doc .cta__tekst {
-  margin: 0 0 1.25rem;
-  font-size: 1.0625rem;
-  color: var(--ink);
-}
-
-/* .btn brengt zijn eigen marge mee voor de homepage; hier regelt .cta__tekst
+/* .btn brengt zijn eigen bovenmarge mee voor de homepage; hier bepaalt .cta
    de afstand. */
 .doc .cta .btn { margin-top: 0; }
 
