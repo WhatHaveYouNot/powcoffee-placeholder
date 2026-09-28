@@ -4,12 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>POW coffee — binnenkort</title>
-<meta name="description" content="POW coffee. Goede koffie thuis, zonder gedoe en zonder studie. Binnenkort.">
-<link rel="icon" href="pow-mark-black.svg?v=31" type="image/svg+xml">
+<meta name="description" content="Verse, hoogwaardige koffie zonder complexe smaaknotities, voor een eerlijke prijs. Kies uit POW Krachtig, Rond en Fruitig. Binnenkort te bestellen.">
+<link rel="icon" href="pow-mark-black.svg?v=32" type="image/svg+xml">
 
 <meta property="og:type" content="website">
 <meta property="og:title" content="POW coffee — binnenkort">
-<meta property="og:description" content="Goede koffie thuis, zonder gedoe en zonder studie. Binnenkort.">
+<meta property="og:description" content="Verse, hoogwaardige koffie zonder complexe smaaknotities. Kies uit POW Krachtig, Rond en Fruitig. Binnenkort.">
 <meta property="og:url" content="https://powcoffee.nl/">
 <meta property="og:locale" content="nl_NL">
 <meta property="og:locale:alternate" content="en_GB">
@@ -26,7 +26,7 @@
 <link rel="alternate" hreflang="x-default" href="https://powcoffee.nl/">
 
 
-<link rel="stylesheet" href="styles.css?v=31">
+<link rel="stylesheet" href="styles.css?v=32">
 
 
 <script type="application/ld+json">
@@ -62,30 +62,68 @@
 
 <main class="page">
 
-  <!-- Staande koffiezak volgens de RVS-richting uit de merkbrief: zilveren
-       basiszak met een horizontale kleurbalk in de smaakfamiliekleuren als
-       enige kleuraccent. De sealrand, zijvouwen en het ontgassingsventiel zijn
-       decoratief en staan daarom op aria-hidden. -->
-  <div class="pouch">
-    <span class="pouch__seal" aria-hidden="true"></span>
+  <section class="hero">
 
-    <h1 class="pouch__logo">
-      <img src="pow-coffee-black.svg?v=31" alt="POW coffee" width="805" height="435">
-    </h1>
+    <!-- Staande koffiezak volgens de RVS-richting uit de merkbrief: zilveren
+         basiszak met een horizontale kleurbalk in de smaakfamiliekleuren als
+         enige kleuraccent. De sealrand, zijvouwen en het ontgassingsventiel zijn
+         decoratief en staan daarom op aria-hidden. -->
+    <div class="pouch">
+      <span class="pouch__seal" aria-hidden="true"></span>
 
-    <span class="pouch__bar" aria-hidden="true">
-      <span class="pouch__seg pouch__seg--krachtig"></span>
-      <span class="pouch__seg pouch__seg--fruitig"></span>
-      <span class="pouch__seg pouch__seg--rond"></span>
-    </span>
+      <h1 class="pouch__logo">
+        <img src="pow-coffee-black.svg?v=32" alt="POW coffee" width="805" height="435">
+      </h1>
 
-    <span class="pouch__valve" aria-hidden="true"></span>
-  </div>
-  <p class="sr-only">Drie smaakfamilies: Krachtig, Fruitig en Rond.</p>
+      <span class="pouch__bar" aria-hidden="true">
+        <span class="pouch__seg pouch__seg--krachtig"></span>
+        <span class="pouch__seg pouch__seg--fruitig"></span>
+        <span class="pouch__seg pouch__seg--rond"></span>
+      </span>
 
-  <p class="tagline">Binnenkort</p>
+      <span class="pouch__valve" aria-hidden="true"></span>
+    </div>
+    <p class="sr-only">Drie smaakfamilies: Krachtig, Fruitig en Rond.</p>
 
-  <button type="button" class="btn" id="open-form">Houd me op de hoogte</button>
+    <p class="tagline">Binnenkort</p>
+
+    <button type="button" class="btn" id="open-form">Houd me op de hoogte</button>
+
+  </section>
+
+  <!-- Het verhaal is nu de waardevolste informatie die er is, dus het staat op
+       de homepage en niet alleen achter een link onderaan. Dit is een kortere
+       versie; het hele verhaal blijft op /over/ staan. -->
+  <section class="verhaal" aria-labelledby="verhaal-kop">
+
+    <h2 id="verhaal-kop">Waarom lukt het jou nou niet om thuis écht lekkere koffie te zetten?</h2>
+
+    <p>
+      Thuis echt lekkere koffie zetten is lastig. Zelfs met een volautomatische
+      bonenmachine kan het zijn dat je dagelijkse kop koffie nog steeds niet echt
+      lekker is. Een groot deel van de oplossing voor dit probleem is de
+      koffieboon. Supermarktbonen zijn over het algemeen te oud en zó donker
+      gebrand dat alle subtiliteit wegvalt. Hoge kwaliteit specialty koffie, aan
+      de andere kant, is vaak zo complex dat je door de bomen letterlijk het bos
+      niet meer ziet.
+    </p>
+
+    <p>
+      POW Coffee zit precies op dit kruispunt: echt goede en verse koffie, zonder
+      complexe smaaknotities voor een eerlijke prijs. Kies uit
+      <strong>POW Krachtig</strong>, <strong>POW Rond</strong> en
+      <strong>POW Fruitig</strong> en geniet weer echt van je dagelijkse koffie.
+    </p>
+
+    <p class="verhaal__meer">
+      <a href="/over/">Lees het hele verhaal <span aria-hidden="true">&rarr;</span></a>
+    </p>
+
+  </section>
+
+</main>
+
+<footer class="pagefoot">
 
   <p class="contact"><a href="mailto:info@powcoffee.nl">info@powcoffee.nl</a></p>
 
@@ -96,7 +134,7 @@
 
   <button type="button" class="btn-cookies" id="hs_show_banner_button">Cookie Settings</button>
 
-</main>
+</footer>
 
 <!-- Cookiebanner. Staat er standaard in de HTML en wordt door script.js
      verborgen zodra er een keuze is gemaakt. Zo is hij meteen zichtbaar,
@@ -131,6 +169,6 @@
   <div class="hs-form-frame" data-region="eu1" data-form-id="3313809b-ae9d-48c7-9a12-b1d08e2b3a7b" data-portal-id="149139429"></div>
 </dialog>
 
-<script src="script.js?v=31" defer></script>
+<script src="script.js?v=32" defer></script>
 </body>
 </html>

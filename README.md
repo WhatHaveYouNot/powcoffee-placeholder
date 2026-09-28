@@ -20,9 +20,17 @@ fonts/                     Alpino, zelf gehost, met licentie
 og.png                     deelplaatje voor WhatsApp/LinkedIn (1200x630)
 ```
 
-De homepage heeft vijf elementen: het logo op de zak, "binnenkort", een knop
-die het aanmeldformulier opent, het e-mailadres en twee links naar de
-inhoudspagina's.
+De homepage bestaat uit drie delen: een opening met het logo op de zak,
+"binnenkort" en de knop die het aanmeldformulier opent; daaronder een korte
+versie van het verhaal met een link naar `/over/`; en onderaan een voet met het
+e-mailadres, de paginalinks en de cookie-instellingen.
+
+De pagina vulde eerst het volle scherm met een gecentreerd blok
+(`min-height: 100dvh` plus `justify-content: center`). Daardoor viel alles wat
+eronder kwam per definitie onder de vouw. Die twee regels zijn eruit; de zak is
+kleiner gemaakt zodat de kop van het verhaal ook op een laag scherm (1000x760)
+boven de cookiebanner uitkomt. Maak de zak niet weer groter zonder dat na te
+meten: bij 18rem stond de kop op 697px en dat is achter de banner.
 
 ## Positionering van navigatie en taalwisselaar
 
@@ -49,8 +57,8 @@ teruggegooid.
 
 ## Ruimte onder de cookiebanner
 
-`.page` reserveert onderaan net zoveel ruimte als de banner hoog is, via
-`--banner-hoogte`. `script.js` meet die hoogte en houdt hem bij met een
+`.pagefoot` (homepage) en `.doc` (inhoudspagina's) reserveren onderaan net
+zoveel ruimte als de banner hoog is, via `--banner-hoogte`. `script.js` meet die hoogte en houdt hem bij met een
 `ResizeObserver`.
 
 Leg die hoogte niet vast in CSS. Dat was de eerste opzet: vaste waardes achter
@@ -104,8 +112,8 @@ nakijken voor je hem als bindend beschouwt.
 
 ## Navigatie
 
-De homepage houdt zijn gecentreerde opzet en krijgt de paginalinks onderaan; een
-volle navigatiebalk bovenaan zou daar de "coming soon"-werking breken. De
+De homepage heeft geen navigatiebalk bovenaan; dat zou de "coming soon"-werking
+breken. De paginalinks staan in de voet. De
 taalwisselaar staat er wél rechtsboven, zwevend, omdat dat de plek is waar
 mensen hem zoeken (zie de sectie hierboven).
 
@@ -121,6 +129,14 @@ verbinding per klik.
 `over/index.html` en `en/about/index.html` bevatten de definitieve tekst van
 Sebastiaan, in beide talen door hem aangeleverd. Beide staan op `index, follow`,
 staan in de sitemap en zijn vanuit de navigatie bereikbaar.
+
+Onder het verhaal staat dezelfde aanmeldknop als op de homepage, met hetzelfde
+venster en hetzelfde formulier-id. Beide Over-pagina's laden daarom `script.js`
+en hebben de volledige cookiebanner, inclusief de knop **Cookie Settings** in de
+voet. Die knop is geen extraatje: de AVG vraagt dat toestemming net zo makkelijk
+in te trekken is als te geven, dus hij hoort op elke pagina waar de banner kan
+verschijnen. Gevolg is wel dat HubSpot en Clarity nu ook op deze pagina's laden
+na toestemming; tot dan gebeurt er niets.
 
 Het contactblok onderaan is een callout (`.callout`), geen gewone sectie: het
 is een uitnodiging om iets te doen, geen leestekst. Het e-mailadres is daarin

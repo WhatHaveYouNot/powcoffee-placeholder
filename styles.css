@@ -74,17 +74,25 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+/* De homepage vulde eerst het hele scherm met een gecentreerd blok. Daardoor
+   begon alles wat eronder stond per definitie onder de vouw. Nu is het een
+   gewone pagina die van boven naar beneden loopt: de opening pakt de ruimte die
+   hij nodig heeft, en het verhaal begint daar direct onder. */
 .page {
-  min-height: 100vh;
-  min-height: 100dvh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   text-align: center;
-  /* Onderaan net zoveel ruimte als de cookiebanner inneemt; script.js meet die
-     hoogte en zet --banner-hoogte. Is de banner weg, dan is die 0. */
-  padding: 2.5rem 1.5rem calc(2.5rem + var(--banner-hoogte, 0px));
+  padding: 0 1.5rem;
+}
+
+/* Ruimte bovenaan voor de zwevende taalwisselaar, die absoluut gepositioneerd
+   is en dus zelf geen hoogte inneemt. */
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2.25rem 0 2rem;
 }
 
 /* ---------- Logo ---------- */
@@ -104,7 +112,7 @@ body {
 .pouch {
   position: relative;
   overflow: hidden;
-  width: clamp(14rem, 32vw, 18rem);
+  width: clamp(11rem, 24vw, 13.5rem);
   aspect-ratio: 1 / 1.45;          /* verhouding van een staande 250g-zak */
   display: flex;
   flex-direction: column;
@@ -219,7 +227,7 @@ body {
 /* ---------- Tekst ---------- */
 
 .tagline {
-  margin: 2.25rem 0 0;
+  margin: 1.5rem 0 0;
   font-weight: 500;
   font-size: 1rem;
   letter-spacing: 0.14em;
@@ -263,7 +271,7 @@ body {
   border: 1.5px solid var(--ink);
   border-radius: var(--radius);
   padding: 1rem 2.25rem;
-  margin-top: 2.25rem;
+  margin-top: 1.75rem;
   cursor: pointer;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2),
               0 3px 10px rgba(0, 0, 0, 0.22);
@@ -466,10 +474,13 @@ body {
 
 .doc__logo:focus-visible { outline: 2px solid var(--ink); outline-offset: 4px; }
 
+/* De cookiebanner staat nu ook op de Over-pagina's, dus hier dezelfde
+   ruimtereservering als op de homepage. Op de privacypagina's staat geen banner
+   en is --banner-hoogte niet gezet; die vallen terug op 0. */
 .doc {
   max-width: 44rem;
   margin: 0 auto;
-  padding: 2.5rem 1.5rem 5rem;
+  padding: 2.5rem 1.5rem calc(5rem + var(--banner-hoogte, 0px));
 }
 
 .doc h1 {
@@ -561,6 +572,9 @@ body {
   .tagline { margin-top: 1.5rem; }
   .contact { margin-top: 1.75rem; }
   .btn-cookies { margin-top: 1.25rem; }
+
+  .hero { padding: 2.5rem 0 3rem; }
+  .pagefoot { margin-top: 3rem; padding-left: 0; padding-right: 0; }
 }
 
 /* ---------- Sitekop met navigatie ----------
@@ -669,6 +683,75 @@ body {
 
 .pagelinks a:hover { color: var(--ink); border-color: var(--ink); }
 .pagelinks a:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+
+/* ---------- Het verhaal op de homepage ----------
+   Dezelfde 44rem als .doc, zodat de regellengte op de hele site gelijk is.
+   .page centreert zijn kinderen en zet de tekst gecentreerd; dat moet hier
+   allebei terug, want lopende tekst lees je links uitgelijnd. */
+
+.verhaal {
+  width: 100%;
+  max-width: 44rem;
+  margin: 0 auto;
+  text-align: left;
+}
+
+/* Eigen opmaak en niet die van ".doc h2": die heeft een scheidingslijn erboven,
+   en dit is de eerste kop van de sectie. */
+.verhaal h2 {
+  margin: 0;
+  font-size: clamp(1.3rem, 1.05rem + 1.1vw, 1.65rem);
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  max-width: 34ch;
+  text-wrap: balance;
+}
+
+.verhaal p {
+  margin: 1.25rem 0 0;
+  font-size: 1.0625rem;
+  color: var(--ink-70);
+}
+
+.verhaal strong { color: var(--ink); font-weight: 600; }
+
+/* De doorklik naar het hele verhaal. Zwaarder aangezet dan de links in de voet:
+   dit is de vervolgstap die we willen dat mensen nemen. */
+.verhaal__meer {
+  margin-top: 1.75rem;
+  font-size: 1.0625rem;
+  font-weight: 600;
+}
+
+.verhaal__meer a {
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.25);
+  padding-bottom: 1px;
+  transition: border-color 0.15s ease;
+}
+
+.verhaal__meer a:hover { border-color: var(--ink); }
+.verhaal__meer a:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+
+/* ---------- Voet van de homepage ----------
+   Het e-mailadres, de paginalinks en de cookie-instellingen stonden midden op
+   de pagina toen daar verder niets was. Met een verhaal ertussen horen ze
+   onderaan. De ruimte voor de cookiebanner zit hier, want dit is nu het laatste
+   blok op de pagina. */
+
+.pagefoot {
+  max-width: 44rem;
+  margin: 4rem auto 0;
+  padding: 2rem 1.5rem calc(2.5rem + var(--banner-hoogte, 0px));
+  border-top: 1px solid rgba(0, 0, 0, 0.12);
+  text-align: center;
+}
+
+.pagefoot .contact { margin-top: 0; }
+.pagefoot .pagelinks { margin-top: 1.25rem; }
+.pagefoot .btn-cookies { margin-top: 1.75rem; }
 
 /* ---------- Taalwisselaar ----------
    Positionering volgt de UX-normen die hiervoor het beste onderzocht zijn:
@@ -851,3 +934,45 @@ body {
 
 .doc .callout a:hover { border-color: var(--ink); }
 .doc .callout a:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+
+/* ---------- Aanmelding onder het verhaal ----------
+   Bewust geen kader. De ondertekening erboven heeft al de kleurbalk en het
+   contactblok eronder is al een kader; een derde vlak ertussen maakt van het
+   einde van de pagina een rij dozen. Een zin en een knop is genoeg, de knop
+   trekt zelf de aandacht wel. */
+
+.doc .cta { margin-top: 3rem; }
+
+.doc .cta__tekst {
+  margin: 0 0 1.25rem;
+  font-size: 1.0625rem;
+  color: var(--ink);
+}
+
+/* .btn brengt zijn eigen marge mee voor de homepage; hier regelt .cta__tekst
+   de afstand. */
+.doc .cta .btn { margin-top: 0; }
+
+/* ---------- Voet van een documentpagina ----------
+   De terugkeerlink en de cookie-instellingen op een regel. Die knop hoort op
+   elke pagina waar de banner kan verschijnen: de AVG vraagt dat toestemming
+   net zo makkelijk in te trekken is als te geven. */
+
+.doc__voet {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 3.5rem;
+  padding-top: 1.75rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.doc__voet .doc__back {
+  margin: 0;
+  padding: 0;
+  border-top: 0;
+}
+
+.doc__voet .btn-cookies { margin-top: 0; }

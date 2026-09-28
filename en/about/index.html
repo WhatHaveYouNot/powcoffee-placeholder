@@ -13,7 +13,7 @@
 <link rel="alternate" hreflang="nl" href="https://powcoffee.nl/over/">
 <link rel="alternate" hreflang="en" href="https://powcoffee.nl/en/about/">
 <link rel="alternate" hreflang="x-default" href="https://powcoffee.nl/over/">
-<link rel="icon" href="/pow-mark-black.svg?v=31" type="image/svg+xml">
+<link rel="icon" href="/pow-mark-black.svg?v=32" type="image/svg+xml">
 
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="POW coffee">
@@ -29,7 +29,7 @@
 <meta property="og:image:alt" content="POW coffee">
 <meta name="twitter:card" content="summary_large_image">
 
-<link rel="stylesheet" href="/styles.css?v=31">
+<link rel="stylesheet" href="/styles.css?v=32">
 
 <script type="application/ld+json">
 {
@@ -86,7 +86,7 @@
 
 <header class="site-head">
   <a class="site-head__logo" href="/en/" aria-label="POW coffee, to the homepage">
-    <img src="/pow-coffee-black.svg?v=31" alt="POW coffee" width="805" height="435">
+    <img src="/pow-coffee-black.svg?v=32" alt="POW coffee" width="805" height="435">
   </a>
     <nav class="site-nav" aria-label="Main navigation">
       <ul>
@@ -169,15 +169,53 @@
     <span>founder</span>
   </p>
 
+  <!-- Zelfde knop, venster en HubSpot-lijst als op de homepage. -->
+  <div class="cta">
+    <p class="cta__tekst">POW opens soon. Want to be the first to know?</p>
+    <button type="button" class="btn" id="open-form">Keep me posted</button>
+  </div>
+
   <aside class="callout">
     <h2>Contact</h2>
     <p>I’d love to hear your questions and ideas at
       <a href="mailto:info@powcoffee.nl">info@powcoffee.nl</a>.</p>
   </aside>
 
-  <p class="doc__back"><a href="/en/">Back to the homepage</a></p>
+  <div class="doc__voet">
+    <p class="doc__back"><a href="/en/">Back to the homepage</a></p>
+    <button type="button" class="btn-cookies" id="hs_show_banner_button">Cookie Settings</button>
+  </div>
 
 </main>
 
+<div class="cookies" id="cookie-banner" role="dialog" aria-live="polite" aria-label="Cookies" hidden>
+  <p class="cookies__text">
+    We use cookies to see how the site is used. Only if you're happy with that.
+    Without them the site works just fine.
+    <a href="/en/privacy/" target="_blank" rel="noopener">Read the privacy statement</a>.
+  </p>
+  <div class="cookies__actions">
+    <button type="button" class="btn btn--sm" id="cookie-accept">Accept</button>
+    <button type="button" class="btn btn--sm btn--ghost" id="cookie-decline">Decline</button>
+  </div>
+</div>
+
+<dialog class="modal" id="form-modal" aria-labelledby="modal-title">
+  <div class="modal__head">
+    <h2 class="modal__title" id="modal-title">Keep me posted</h2>
+    <div class="modal__head-right">
+      <a class="modal__privacy" href="/en/privacy/" target="_blank" rel="noopener">Privacy statement</a>
+      <button type="button" class="modal__close" id="close-form" aria-label="Close">&times;</button>
+    </div>
+  </div>
+
+  <!-- LET OP: dit HubSpot-formulier is Nederlandstalig. Zie de README:
+       een Engelse bezoeker krijgt hier nu Nederlandse velden en
+       toestemmingsteksten. Maak een tweede formulier in HubSpot en zet het
+       form-id hieronder om. -->
+  <div class="hs-form-frame" data-region="eu1" data-form-id="3313809b-ae9d-48c7-9a12-b1d08e2b3a7b" data-portal-id="149139429"></div>
+</dialog>
+
+<script src="/script.js?v=32" defer></script>
 </body>
 </html>
